@@ -3,6 +3,7 @@ import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
+import { Header } from "@/components/header"
 
 export default function BlogPage() {
   // Datos de ejemplo para el blog
@@ -43,52 +44,10 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header/Navigation */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
-        <div className="container flex h-20 md:h-24 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Indelta" width={48} height={48} className="h-12 w-auto" />
-            <span className="text-2xl font-bold text-[#0a325a]">Indelta</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <Link
-              href="/#why-us"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              ¿Por qué elegirnos?
-            </Link>
-            <Link
-              href="/#process"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              Nuestro proceso
-            </Link>
-            <Link
-              href="/#testimonials"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              Testimonios
-            </Link>
-            <Link
-              href="/blog"
-              className="text-[#0a325a] font-medium border-b-2 border-[#aa8c64] transition-colors text-lg py-2"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/#contact"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              Contacto
-            </Link>
-          </nav>
-          <Button className="bg-[#0a325a] hover:bg-[#0a325a]/90 text-white text-lg px-6 py-6">
-            Agenda una consulta
-          </Button>
-        </div>
-      </header>
+      {/* Header with Blog active */}
+      <Header activePage="blog" />
 
-      <main className="container py-12">
+      <main className="container py-8 md:py-12">
         <div className="mb-8">
           <Link
             href="/"
@@ -97,28 +56,31 @@ export default function BlogPage() {
             <ArrowLeft className="mr-2 h-4 w-4" />
             Volver al inicio
           </Link>
-          <h1 className="text-4xl font-bold text-[#0a325a] mb-2">Blog de Indelta</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-2">Blog de Indelta</h1>
           <p className="text-lg text-slate-600 max-w-2xl">
             Artículos, análisis y consejos para tomar mejores decisiones financieras.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {blogPosts.map((post) => (
-            <Card key={post.id} className="overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="relative h-48">
+            <Card 
+              key={post.id} 
+              className="overflow-hidden hover:shadow-lg transition-all flex flex-col h-full transform hover:-translate-y-1"
+            >
+              <div className="relative h-48 md:h-56 w-full">
                 <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
                 <div className="absolute top-4 left-4 bg-[#aa8c64] text-white px-3 py-1 text-sm rounded-full">
                   {post.category}
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-grow">
                 <p className="text-sm text-slate-500 mb-2">{post.date}</p>
                 <h3 className="text-xl font-semibold text-[#0a325a] mb-2">{post.title}</h3>
-                <p className="text-slate-600 mb-4">{post.excerpt}</p>
+                <p className="text-slate-600 mb-4 flex-grow">{post.excerpt}</p>
                 <Link
                   href={`/blog/${post.id}`}
-                  className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center"
+                  className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center mt-auto"
                 >
                   Leer más
                   <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
@@ -129,20 +91,66 @@ export default function BlogPage() {
         </div>
       </main>
 
-      {/* WhatsApp Floating Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <a
-          href="https://wa.me/5491155555555"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-[#aa8c64] hover:bg-[#aa8c64]/90 text-white px-4 py-3 rounded-full shadow-lg transition-all hover:shadow-xl"
-        >
-          <div className="bg-white rounded-full p-1 flex items-center justify-center w-8 h-8">
-            <Image src="/logo.png" alt="Indelta" width={24} height={24} className="w-6 h-6" />
-          </div>
-          <span className="font-medium">Habla con un asesor</span>
-        </a>
+{/* WhatsApp Floating Button - Versión sin framer-motion */}
+<div className="fixed bottom-6 right-6 z-50">
+  <div className="relative group">
+    <a
+      href="https://wa.me/5491155555555"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white px-5 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px]"
+      aria-label="Contactar por WhatsApp"
+    >
+      <div className="relative">
+        {/* Efecto de ping animado */}
+        <span className="absolute inset-0 rounded-full bg-white/30 animate-ping opacity-70"></span>
+        
+        <div className="bg-white rounded-full p-1 flex items-center justify-center w-10 h-10 relative z-10">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#25D366"
+            className="w-7 h-7 transition-transform duration-300 group-hover:scale-110"
+          >
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+        </div>
       </div>
+      
+      <div className="flex flex-col items-start">
+        <span className="font-medium text-sm opacity-90">Asistencia inmediata</span>
+        <span className="font-bold text-base">Habla con un asesor</span>
+      </div>
+      
+      {/* Flecha animada sin framer-motion */}
+      <div className="ml-1 hidden md:block">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="18" 
+          height="18" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="3" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          className="opacity-90 animate-bounce-x"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </div>
+    </a>
+    
+    {/* Tooltip emergente */}
+    <div className="absolute -top-16 right-0 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-md max-w-[200px] text-sm font-medium text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      ¿Necesitas asesoramiento financiero? ¡Chatea con nosotros!
+      <div className="absolute bottom-[-6px] right-6 w-3 h-3 bg-white transform rotate-45"></div>
+    </div>
+  </div>
+</div>
 
       {/* Footer */}
       <footer className="bg-[#0a325a] text-white py-12">

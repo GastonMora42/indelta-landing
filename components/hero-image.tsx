@@ -1,8 +1,9 @@
+// Actualización en hero-image.tsx
 "use client"
 
 import { useEffect, useRef } from "react"
 import Image from "next/image"
-import { motion, useAnimation, useInView } from "framer-motion"
+import { motion, useAnimation, useInView, useMotionValue, useTransform } from "framer-motion"
 import { DollarSign, BarChart2, Shield, Sprout } from "lucide-react"
 import { Card } from "@/components/ui/card"
 
@@ -10,12 +11,25 @@ export function HeroImage() {
   const controls = useAnimation()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
+  
+  // Valores para la animación 3D
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  
+  const rotateX = useTransform(mouseY, [-300, 300], [10, -10])
+  const rotateY = useTransform(mouseX, [-300, 300], [-10, 10])
 
   useEffect(() => {
     if (isInView) {
       controls.start("visible")
     }
   }, [controls, isInView])
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect()
+    mouseX.set(e.clientX - rect.left - rect.width / 2)
+    mouseY.set(e.clientY - rect.top - rect.height / 2)
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,11 +56,11 @@ export function HeroImage() {
 
   const cardVariants = {
     hidden: { opacity: 0, x: 20 },
-    visible: (i) => ({
+    visible: (index: number) => ({
       opacity: 1,
       x: 0,
       transition: {
-        delay: 0.8 + i * 0.2,
+        delay: 0.8 + index * 0.2,
         duration: 0.5,
         ease: "easeOut",
       },
@@ -67,8 +81,20 @@ export function HeroImage() {
         initial="hidden"
         animate={controls}
         className="relative h-[450px] md:h-[500px] rounded-2xl overflow-hidden shadow-xl flex-shrink-0 w-full md:w-3/5"
+        onMouseMove={handleMouseMove}
+        style={{
+          perspective: 1000,
+        }}
       >
-        <motion.div variants={imageVariants} className="relative h-full w-full">
+        <motion.div 
+          variants={imageVariants} 
+          className="relative h-full w-full"
+          style={{
+            rotateX,
+            rotateY,
+            transition: "transform 0.1s ease-out", // Corrección aquí
+          }}
+        >
           <Image
             src="/hero-image-new.jpg"
             alt="Asesora financiera"
@@ -92,9 +118,9 @@ export function HeroImage() {
 
       {/* Animated Icon Cards */}
       <div className="flex flex-col gap-3 w-full md:w-2/5">
-        {iconInfo.map((item, i) => (
-          <motion.div key={i} custom={i} variants={cardVariants} initial="hidden" animate={controls}>
-            <Card className="p-4 flex items-center gap-4 shadow-md hover:shadow-lg transition-shadow">
+        {iconInfo.map((item, index) => (
+          <motion.div key={index} custom={index} variants={cardVariants} initial="hidden" animate={controls}>
+            <Card className="p-4 flex items-center gap-4 shadow-md hover:shadow-lg">
               <div className="p-3 rounded-lg" style={{ backgroundColor: `${item.color}20` }}>
                 <item.icon className="h-6 w-6" style={{ color: item.color }} />
               </div>

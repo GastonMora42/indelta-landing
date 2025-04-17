@@ -1,5 +1,5 @@
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
 import { ChevronRight, BarChart2, Shield, Users, TrendingUp } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -8,93 +8,77 @@ import { ContactForm } from "@/components/contact-form"
 import { ProcessSteps } from "@/components/process-steps"
 import { Testimonials } from "@/components/testimonials"
 import { CompanyLogos } from "@/components/company-logos"
-import { HeroImage } from "@/components/hero-image"
 import { TestimonialCta } from "@/components/testimonial-cta"
+import { HeroCarousel } from "@/components/hero-carousel"
+import { Header } from "@/components/header"
+import { motion } from "framer-motion"
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Header/Navigation */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
-        <div className="container flex h-20 md:h-24 items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Image src="/logo.png" alt="Indelta" width={48} height={48} className="h-12 w-auto" />
-            <span className="text-2xl font-bold text-[#0a325a]">Indelta</span>
-          </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <Link
-              href="#why-us"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              ¿Por qué elegirnos?
-            </Link>
-            <Link
-              href="#process"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              Nuestro proceso
-            </Link>
-            <Link
-              href="#testimonials"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              Testimonios
-            </Link>
-            <Link
-              href="/blog"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              Blog
-            </Link>
-            <Link
-              href="#contact"
-              className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-lg font-medium py-2 border-b-2 border-transparent hover:border-[#93ABC3]"
-            >
-              Contacto
-            </Link>
-          </nav>
-          <Button className="bg-[#0a325a] hover:bg-[#0a325a]/90 text-white text-lg px-6 py-6">
-            Agenda una consulta
-          </Button>
-        </div>
-      </header>
+      <Header activePage="home" />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative py-20 md:py-28">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a325a]/10 to-[#99C7C8]/10 z-0"></div>
+        {/* Hero Section with Carousel */}
+        <section className="relative py-10 md:py-16 bg-gray-50">
           <div className="container relative z-10">
             <div className="grid grid-cols-1 gap-8">
-              <div className="space-y-6">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0a325a] leading-tight">
-                  Protección patrimonial para tu futuro financiero
-                </h1>
-                <p className="text-lg md:text-xl text-slate-700 max-w-lg">
-                  Asesoramiento financiero personalizado para inversores que buscan seguridad, crecimiento y
-                  tranquilidad en sus decisiones de inversión.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Button className="bg-[#0a325a] hover:bg-[#0a325a]/90 text-white px-6 py-6 text-lg">
-                    Protege tu patrimonio
-                    <ChevronRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    className="border-[#aa8c64] text-[#aa8c64] hover:bg-[#aa8c64]/10 px-6 py-6 text-lg"
-                  >
-                    Conoce más
-                  </Button>
-                </div>
-              </div>
-              <HeroImage />
+              <HeroCarousel />
             </div>
           </div>
         </section>
 
-        {/* Why Choose Us Section */}
-        <section id="why-us" className="py-16 bg-white">
+        {/* Feature Highlights Section - New */}
+        <section className="py-16 bg-white">
+          <div className="container">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Card className="p-8 hover:shadow-lg transition-all bg-gradient-to-br from-[#0a325a]/5 to-[#0a325a]/10 border-none">
+                <div className="mb-6 p-4 bg-[#0a325a]/10 rounded-full w-fit">
+                  <Shield className="h-8 w-8 text-[#0a325a]" />
+                </div>
+                <h3 className="text-2xl font-semibold text-[#0a325a] mb-3">Protección patrimonial</h3>
+                <p className="text-slate-600 mb-6">
+                  Diseñamos estrategias que priorizan la seguridad de tu capital en todo momento, incluso en entornos económicos cambiantes.
+                </p>
+                <Link href="#why-us" className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center">
+                  Conocer más <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Card>
+              
+              <Card className="p-8 hover:shadow-lg transition-all bg-gradient-to-br from-[#93ABC3]/5 to-[#93ABC3]/10 border-none">
+                <div className="mb-6 p-4 bg-[#93ABC3]/10 rounded-full w-fit">
+                  <BarChart2 className="h-8 w-8 text-[#93ABC3]" />
+                </div>
+                <h3 className="text-2xl font-semibold text-[#0a325a] mb-3">Rentabilidad sostenible</h3>
+                <p className="text-slate-600 mb-6">
+                  Maximizamos el rendimiento de tus inversiones con un enfoque orientado al crecimiento estable y de largo plazo.
+                </p>
+                <Link href="#process" className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center">
+                  Conocer más <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Card>
+              
+              <Card className="p-8 hover:shadow-lg transition-all bg-gradient-to-br from-[#aa8c64]/5 to-[#aa8c64]/10 border-none">
+                <div className="mb-6 p-4 bg-[#aa8c64]/10 rounded-full w-fit">
+                  <Users className="h-8 w-8 text-[#aa8c64]" />
+                </div>
+                <h3 className="text-2xl font-semibold text-[#0a325a] mb-3">Asesoría personalizada</h3>
+                <p className="text-slate-600 mb-6">
+                  Brindamos atención individualizada adaptada a tus objetivos financieros y perfil de riesgo personal.
+                </p>
+                <Link href="#contact" className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center">
+                  Contactar ahora <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us Section - Reorganized */}
+        <section id="why-us" className="py-16 bg-gray-50">
           <div className="container">
             <div className="text-center mb-12">
+              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Nuestras ventajas</span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-4">¿Por qué elegirnos?</h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Ofrecemos soluciones financieras personalizadas con un enfoque en la seguridad y el crecimiento
@@ -144,7 +128,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Our Process Section */}
+        {/* Process Section */}
         <section id="process" className="py-16 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[#0a325a]/30 to-[#0a325a]/5 z-0"></div>
           <div className="absolute inset-0 z-0">
@@ -152,6 +136,7 @@ export default function Home() {
           </div>
           <div className="container relative z-10">
             <div className="text-center mb-12">
+              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Metodología</span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-4">Nuestro proceso</h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Un enfoque metódico y transparente para ayudarte a alcanzar tus objetivos financieros.
@@ -173,6 +158,7 @@ export default function Home() {
         <section id="testimonials" className="py-16 bg-white relative">
           <div className="container">
             <div className="text-center mb-12">
+              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Experiencias</span>
               <h2 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-4">Lo que dicen nuestros clientes</h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Historias de éxito de quienes confiaron en nuestro asesoramiento.
@@ -190,6 +176,7 @@ export default function Home() {
         <section className="py-12 bg-gray-50">
           <div className="container">
             <div className="text-center mb-8">
+              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Portfolio</span>
               <h2 className="text-2xl md:text-3xl font-bold text-[#0a325a] mb-4">Invertimos en las mejores empresas</h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                 Accede a oportunidades de inversión en compañías líderes a nivel mundial.
@@ -219,18 +206,19 @@ export default function Home() {
         </section>
 
         {/* Contact Form Section */}
-        <section id="contact" className="py-16 relative overflow-hidden bg-white">
+        <section id="contact" className="py-16 relative overflow-hidden bg-gradient-to-br from-[#0a325a]/10 to-transparent">
           <div className="container relative z-10">
             <div className="max-w-3xl mx-auto">
-              <Card className="p-8 backdrop-blur-sm bg-[#aa8c64]/20 shadow-xl border-none overflow-hidden">
+              <div className="text-center mb-8">
+                <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Contáctanos</span>
+                <h2 className="text-3xl font-bold text-[#0a325a] mb-4">Hablemos de tu futuro financiero</h2>
+                <p className="text-slate-700">
+                  Complete esta información para ser contactado por un asesor especializado
+                </p>
+              </div>
+              
+              <Card className="p-8 backdrop-blur-sm bg-white shadow-xl border-none overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#aa8c64] to-[#aa8c64]/30"></div>
-                <div className="text-center mb-8">
-                  <h2 className="text-3xl font-bold text-[#0a325a] mb-4">Hablemos de tu futuro financiero</h2>
-                  <p className="text-slate-700">
-                    Complete esta información para ser contactado por un asesor especializado
-                  </p>
-                </div>
-
                 <ContactForm />
               </Card>
             </div>
@@ -327,21 +315,68 @@ export default function Home() {
             </p>
           </div>
         </div>
+        
       </footer>
-      {/* WhatsApp Floating Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <a
-          href="https://wa.me/5491155555555"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 bg-[#aa8c64] hover:bg-[#aa8c64]/90 text-white px-4 py-3 rounded-full shadow-lg transition-all hover:shadow-xl"
-        >
-          <div className="bg-white rounded-full p-1 flex items-center justify-center w-8 h-8">
-            <Image src="/logo.png" alt="Indelta" width={24} height={24} className="w-6 h-6" />
-          </div>
-          <span className="font-medium">Habla con un asesor</span>
-        </a>
+{/* WhatsApp Floating Button - Versión sin framer-motion */}
+<div className="fixed bottom-6 right-6 z-50">
+  <div className="relative group">
+    <a
+      href="https://wa.me/5491155555555"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white px-5 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px]"
+      aria-label="Contactar por WhatsApp"
+    >
+      <div className="relative">
+        {/* Efecto de ping animado */}
+        <span className="absolute inset-0 rounded-full bg-white/30 animate-ping opacity-70"></span>
+        
+        <div className="bg-white rounded-full p-1 flex items-center justify-center w-10 h-10 relative z-10">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#25D366"
+            className="w-7 h-7 transition-transform duration-300 group-hover:scale-110"
+          >
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+        </div>
       </div>
+      
+      <div className="flex flex-col items-start">
+        <span className="font-medium text-sm opacity-90">Asistencia inmediata</span>
+        <span className="font-bold text-base">Habla con un asesor</span>
+      </div>
+      
+      {/* Flecha animada sin framer-motion */}
+      <div className="ml-1 hidden md:block">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          width="18" 
+          height="18" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="3" 
+          strokeLinecap="round" 
+          strokeLinejoin="round"
+          className="opacity-90 animate-bounce-x"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </div>
+    </a>
+    
+    {/* Tooltip emergente */}
+    <div className="absolute -top-16 right-0 bg-white text-gray-800 px-4 py-2 rounded-lg shadow-md max-w-[200px] text-sm font-medium text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      ¿Necesitas asesoramiento financiero? ¡Chatea con nosotros!
+      <div className="absolute bottom-[-6px] right-6 w-3 h-3 bg-white transform rotate-45"></div>
     </div>
+  </div>
+</div>
+</div>
   )
 }

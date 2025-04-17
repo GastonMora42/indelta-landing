@@ -1,22 +1,26 @@
+// components/testimonial-cta.tsx (modificado)
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { motion, useAnimation, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, X } from "lucide-react"
 
 export function TestimonialCta() {
   const controls = useAnimation()
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, threshold: 0.3 })
+  const isInView = useInView(ref, { once: true })
+  const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
-    if (isInView) {
+    if (isInView && isVisible) {
       controls.start("visible")
+    } else {
+      controls.start("hidden")
     }
-  }, [controls, isInView])
+  }, [controls, isInView, isVisible])
 
   const containerVariants = {
     hidden: { opacity: 0, x: 100 },
@@ -44,6 +48,13 @@ export function TestimonialCta() {
     },
   }
 
+  const handleClose = () => {
+    setIsVisible(false)
+  }
+
+  // Si no es visible, no renderizar nada
+  if (!isVisible) return null
+
   return (
     <div ref={ref} className="relative">
       <motion.div
@@ -52,10 +63,19 @@ export function TestimonialCta() {
         animate={controls}
         className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 max-w-md"
       >
-        <Card className="p-6 border-4 border-white shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm">
+        <Card className="p-6 border-4 border-white shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm relative">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="absolute right-2 top-2 z-20 h-8 w-8 text-gray-500 hover:text-gray-800 hover:bg-gray-200/70"
+            onClick={handleClose}
+          >
+            <X className="h-4 w-4" />
+          </Button>
+          
           <div className="relative mb-4 rounded-lg overflow-hidden">
             <Image
-              src="/testimonial-cta.jpg"
+              src="/banner1.webp"
               alt="Invierte con nosotros"
               width={400}
               height={300}
