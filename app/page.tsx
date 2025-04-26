@@ -9,9 +9,10 @@ import { ProcessSteps } from "@/components/process-steps"
 import { Testimonials } from "@/components/testimonials"
 import { CompanyLogos } from "@/components/company-logos"
 import { TestimonialCta } from "@/components/testimonial-cta"
-import { HeroCarousel } from "@/components/hero-carousel"
+import { HeroBanner } from "@/components/hero-carousel"
 import { Header } from "@/components/header"
 import { motion } from "framer-motion"
+import { ServicesSection } from "@/components/services-section"
 
 export default function Home() {
   return (
@@ -23,7 +24,7 @@ export default function Home() {
         <section className="relative py-10 md:py-16 bg-gray-50">
           <div className="container relative z-10">
             <div className="grid grid-cols-1 gap-8">
-              <HeroCarousel />
+              <HeroBanner />
             </div>
           </div>
         </section>
@@ -128,31 +129,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Process Section */}
-        <section id="process" className="py-16 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0a325a]/30 to-[#0a325a]/5 z-0"></div>
-          <div className="absolute inset-0 z-0">
-            <div className="bokeh-bg"></div>
-          </div>
-          <div className="container relative z-10">
-            <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Metodología</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-4">Nuestro proceso</h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Un enfoque metódico y transparente para ayudarte a alcanzar tus objetivos financieros.
-              </p>
-            </div>
-
-            <ProcessSteps />
-
-            <div className="flex justify-center mt-12">
-              <Button className="bg-[#0a325a] hover:bg-[#0a325a]/90 text-white px-8 py-6 text-lg group">
-                Conocer más
-                <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </div>
-          </div>
-        </section>
+        {/* Servicios Section */}
+            <ServicesSection />
 
         {/* Testimonials Section */}
         <section id="testimonials" className="py-16 bg-white relative">
