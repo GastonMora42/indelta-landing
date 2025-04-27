@@ -27,17 +27,17 @@ export function HeroBanner() {
   const slides: SlideType[] = [
     {
       id: "slide1",
-      image: "/banner1.webp",
+      image: "/b1.webp",
       alt: "Inversiones estratégicas"
     },
     {
       id: "slide2",
-      image: "/banner2.webp",
+      image: "/b2.webp",
       alt: "Planificación financiera"
     },
     {
       id: "slide3",
-      image: "/banner3.webp",
+      image: "/b3.webp",
       alt: "Protección patrimonial"
     }
   ]

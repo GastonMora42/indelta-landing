@@ -13,6 +13,7 @@ import { HeroBanner } from "@/components/hero-carousel"
 import { Header } from "@/components/header"
 import { motion } from "framer-motion"
 import { ServicesSection } from "@/components/services-section"
+import { WhyChooseUsSection } from "@/components/why-choose-us-section"
 
 export default function Home() {
   return (
@@ -29,105 +30,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Feature Highlights Section - New */}
-        <section className="py-16 bg-white">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="p-8 hover:shadow-lg transition-all bg-gradient-to-br from-[#0a325a]/5 to-[#0a325a]/10 border-none">
-                <div className="mb-6 p-4 bg-[#0a325a]/10 rounded-full w-fit">
-                  <Shield className="h-8 w-8 text-[#0a325a]" />
-                </div>
-                <h3 className="text-2xl font-semibold text-[#0a325a] mb-3">Protección patrimonial</h3>
-                <p className="text-slate-600 mb-6">
-                  Diseñamos estrategias que priorizan la seguridad de tu capital en todo momento, incluso en entornos económicos cambiantes.
-                </p>
-                <Link href="#why-us" className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center">
-                  Conocer más <ChevronRight className="ml-1 h-4 w-4" />
-                </Link>
-              </Card>
-              
-              <Card className="p-8 hover:shadow-lg transition-all bg-gradient-to-br from-[#93ABC3]/5 to-[#93ABC3]/10 border-none">
-                <div className="mb-6 p-4 bg-[#93ABC3]/10 rounded-full w-fit">
-                  <BarChart2 className="h-8 w-8 text-[#93ABC3]" />
-                </div>
-                <h3 className="text-2xl font-semibold text-[#0a325a] mb-3">Rentabilidad sostenible</h3>
-                <p className="text-slate-600 mb-6">
-                  Maximizamos el rendimiento de tus inversiones con un enfoque orientado al crecimiento estable y de largo plazo.
-                </p>
-                <Link href="#process" className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center">
-                  Conocer más <ChevronRight className="ml-1 h-4 w-4" />
-                </Link>
-              </Card>
-              
-              <Card className="p-8 hover:shadow-lg transition-all bg-gradient-to-br from-[#aa8c64]/5 to-[#aa8c64]/10 border-none">
-                <div className="mb-6 p-4 bg-[#aa8c64]/10 rounded-full w-fit">
-                  <Users className="h-8 w-8 text-[#aa8c64]" />
-                </div>
-                <h3 className="text-2xl font-semibold text-[#0a325a] mb-3">Asesoría personalizada</h3>
-                <p className="text-slate-600 mb-6">
-                  Brindamos atención individualizada adaptada a tus objetivos financieros y perfil de riesgo personal.
-                </p>
-                <Link href="#contact" className="text-[#aa8c64] font-medium hover:text-[#aa8c64]/80 transition-colors inline-flex items-center">
-                  Contactar ahora <ChevronRight className="ml-1 h-4 w-4" />
-                </Link>
-              </Card>
-            </div>
-          </div>
-        </section>
-
         {/* Why Choose Us Section - Reorganized */}
-        <section id="why-us" className="py-16 bg-gray-50">
-          <div className="container">
-            <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Nuestras ventajas</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-4">¿Por qué elegirnos?</h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Ofrecemos soluciones financieras personalizadas con un enfoque en la seguridad y el crecimiento
-                sostenible.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="p-6 border-t-4 border-t-[#0a325a] hover:shadow-lg transition-shadow">
-                <div className="mb-4 p-3 bg-[#0a325a]/10 rounded-full w-fit">
-                  <Shield className="h-6 w-6 text-[#0a325a]" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#0a325a] mb-2">Seguridad garantizada</h3>
-                <p className="text-slate-600">
-                  Protegemos tu patrimonio con estrategias de inversión seguras y diversificadas.
-                </p>
-              </Card>
-
-              <Card className="p-6 border-t-4 border-t-[#93ABC3] hover:shadow-lg transition-shadow">
-                <div className="mb-4 p-3 bg-[#93ABC3]/10 rounded-full w-fit">
-                  <BarChart2 className="h-6 w-6 text-[#93ABC3]" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#0a325a] mb-2">Análisis experto</h3>
-                <p className="text-slate-600">
-                  Nuestro equipo de analistas monitorea constantemente el mercado para tomar decisiones informadas.
-                </p>
-              </Card>
-
-              <Card className="p-6 border-t-4 border-t-[#99C7C8] hover:shadow-lg transition-shadow">
-                <div className="mb-4 p-3 bg-[#99C7C8]/10 rounded-full w-fit">
-                  <Users className="h-6 w-6 text-[#99C7C8]" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#0a325a] mb-2">Atención personalizada</h3>
-                <p className="text-slate-600">
-                  Cada cliente recibe un plan de inversión adaptado a sus objetivos y perfil de riesgo.
-                </p>
-              </Card>
-
-              <Card className="p-6 border-t-4 border-t-[#aa8c64] hover:shadow-lg transition-shadow">
-                <div className="mb-4 p-3 bg-[#aa8c64]/10 rounded-full w-fit">
-                  <TrendingUp className="h-6 w-6 text-[#aa8c64]" />
-                </div>
-                <h3 className="text-xl font-semibold text-[#0a325a] mb-2">Resultados comprobados</h3>
-                <p className="text-slate-600">Historial de rendimiento superior al mercado con menor volatilidad.</p>
-              </Card>
-            </div>
-          </div>
-        </section>
+        <WhyChooseUsSection />
 
         {/* Servicios Section */}
             <ServicesSection />
