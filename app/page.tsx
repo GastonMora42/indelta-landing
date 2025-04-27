@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ContactForm } from "@/components/contact-form"
 import { ProcessSteps } from "@/components/process-steps"
-import { Testimonials } from "@/components/testimonials"
 import { CompanyLogos } from "@/components/company-logos"
 import { TestimonialCta } from "@/components/testimonial-cta"
 import { HeroBanner } from "@/components/hero-carousel"
@@ -14,6 +13,10 @@ import { Header } from "@/components/header"
 import { motion } from "framer-motion"
 import { ServicesSection } from "@/components/services-section"
 import { WhyChooseUsSection } from "@/components/why-choose-us-section"
+import { EnhancedTestimonials } from "@/components/enhanced-testimonials"
+import { TrustedBrandsCarousel } from "@/components/trusted-brands-carousel"
+import { ImpactStatistics } from "@/components/impact-statictics"
+import { TrustedByPartnersPremium } from "@/components/trusted-by-partners"
 
 export default function Home() {
   return (
@@ -36,57 +39,24 @@ export default function Home() {
         {/* Servicios Section */}
             <ServicesSection />
 
+            <TrustedBrandsCarousel />
+            <ImpactStatistics />
+      
+
         {/* Testimonials Section */}
         <section id="testimonials" className="py-16 bg-white relative">
           <div className="container">
-            <div className="text-center mb-12">
-              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Experiencias</span>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-4">Lo que dicen nuestros clientes</h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Historias de éxito de quienes confiaron en nuestro asesoramiento.
-              </p>
-            </div>
 
-            <Testimonials />
+            <EnhancedTestimonials />
+      
           </div>
 
           {/* Testimonial CTA */}
           <TestimonialCta />
         </section>
 
-        {/* Company Logos Section */}
-        <section className="py-12 bg-gray-50">
-          <div className="container">
-            <div className="text-center mb-8">
-              <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Portfolio</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#0a325a] mb-4">Invertimos en las mejores empresas</h2>
-              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Accede a oportunidades de inversión en compañías líderes a nivel mundial.
-              </p>
-            </div>
-
-            <CompanyLogos />
-          </div>
-        </section>
-
         {/* Partner Logo */}
-        <section className="py-8 bg-white">
-          <div className="container">
-            <div className="flex flex-col items-center justify-center gap-4">
-              <p className="text-lg text-slate-600">Partner estratégico</p>
-              <div className="w-40">
-                <Image
-                  src="/placeholder.svg?height=80&width=160"
-                  alt="Balanz"
-                  width={160}
-                  height={80}
-                  className="h-auto w-full"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
+        <TrustedByPartnersPremium />
         {/* Contact Form Section */}
         <section id="contact" className="py-16 relative overflow-hidden bg-gradient-to-br from-[#0a325a]/10 to-transparent">
           <div className="container relative z-10">
