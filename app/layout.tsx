@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Indelta oficial',
   description: 'Pagina oficial de Indelta',
   generator: 'Jett Labs',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({

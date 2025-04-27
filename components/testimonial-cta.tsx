@@ -1,106 +1,107 @@
-// components/testimonial-cta.tsx (modificado)
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
-import { motion, useAnimation, useInView } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { ArrowRight, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { ArrowRight, X } from "lucide-react"
 
 export function TestimonialCta() {
-  const controls = useAnimation()
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
+  const [hasBeenShown, setHasBeenShown] = useState(false)
+  // Especificamos el tipo correcto para el ref
+  const contactRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    if (isInView && isVisible) {
-      controls.start("visible")
-    } else {
-      controls.start("hidden")
+    // Función para detectar cuando el elemento está en el viewport
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        // Solo mostrar si está en viewport y no ha sido mostrado y cerrado anteriormente
+        if (entry.isIntersecting && !hasBeenShown) {
+          // Espera un momento antes de mostrar para una mejor experiencia
+          setTimeout(() => {
+            setIsVisible(true);
+          }, 1000);
+        } else if (!entry.isIntersecting && isVisible) {
+          // Ocultar cuando salga del viewport
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.5 } // Activa cuando el 50% del elemento está visible
+    );
+
+    // Observa la sección de contacto
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      observer.observe(contactSection);
+      // Asignamos de manera segura
+      contactRef.current = contactSection;
     }
-  }, [controls, isInView, isVisible])
 
-  const containerVariants = {
-    hidden: { opacity: 0, x: 100 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const childVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut",
-      },
-    },
-  }
+    return () => {
+      // Verificamos que contactRef.current no sea null antes de usar unobserve
+      if (contactRef.current) {
+        observer.unobserve(contactRef.current);
+      }
+    };
+  }, [isVisible, hasBeenShown]);
 
   const handleClose = () => {
-    setIsVisible(false)
-  }
-
-  // Si no es visible, no renderizar nada
-  if (!isVisible) return null
+    setIsVisible(false);
+    setHasBeenShown(true); // Evita que vuelva a aparecer al volver a la sección
+  };
 
   return (
-    <div ref={ref} className="relative">
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate={controls}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 max-w-md"
-      >
-        <Card className="p-6 border-4 border-white shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm relative">
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="absolute right-2 top-2 z-20 h-8 w-8 text-gray-500 hover:text-gray-800 hover:bg-gray-200/70"
-            onClick={handleClose}
-          >
-            <X className="h-4 w-4" />
-          </Button>
-          
-          <div className="relative mb-4 rounded-lg overflow-hidden">
-            <Image
-              src="/banner1.webp"
-              alt="Invierte con nosotros"
-              width={400}
-              height={300}
-              className="w-full h-auto object-cover rounded-lg"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a325a]/40 to-transparent"></div>
-          </div>
-
-          <motion.h3 variants={childVariants} className="text-2xl font-bold text-[#0a325a] mb-2">
-            Tu futuro financiero comienza hoy
-          </motion.h3>
-
-          <motion.p variants={childVariants} className="text-slate-600 mb-4">
-            Únete a nuestros clientes satisfechos y comienza a construir un patrimonio sólido con asesoramiento
-            profesional.
-          </motion.p>
-
-          <motion.div variants={childVariants}>
-            <Button className="w-full bg-[#aa8c64] hover:bg-[#aa8c64]/90 text-white py-6 group">
-              Invertí seguro, invertí con nosotros
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, y: 15, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -10, scale: 0.9 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="fixed bottom-24 right-24 z-50 max-w-xs bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-[#aa8c64]/20 overflow-hidden"
+        >
+          <div className="p-5 relative">
+            {/* Close button - subtle and elegant */}
+            <button 
+              onClick={handleClose}
+              className="absolute right-2 top-2 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-200 transition-colors"
+            >
+              <span className="sr-only">Cerrar</span>
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+                <path d="M1 1L7 7M7 1L1 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+            </button>
+            
+            {/* Content area */}
+            <div className="flex items-start gap-3 mb-3">
+              <div className="w-10 h-10 bg-[#aa8c64]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <Sparkles className="h-5 w-5 text-[#aa8c64]" />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-[#0a325a] mb-1">Impulsa tu bienestar financiero</h4>
+                <p className="text-xs text-slate-600">
+                  Nuestros asesores expertos pueden ayudarte a construir un patrimonio sólido que perdure en el tiempo.
+                </p>
+              </div>
+            </div>
+            
+            <Button 
+              className="w-full bg-gradient-to-r from-[#0a325a] to-[#0a325a] hover:from-[#0a325a] hover:to-[#aa8c64] text-white text-xs py-2 h-auto mt-1 transition-all duration-300"
+              onClick={() => {
+                handleClose();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Hablar con un asesor ahora
+              <ArrowRight className="ml-1.5 h-3 w-3 transition-transform group-hover:translate-x-0.5" />
             </Button>
-          </motion.div>
-        </Card>
-      </motion.div>
-    </div>
+          </div>
+          
+          {/* Subtle decorative element */}
+          <div className="h-1 w-full bg-gradient-to-r from-[#aa8c64] via-[#0a325a] to-[#aa8c64] opacity-70"></div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

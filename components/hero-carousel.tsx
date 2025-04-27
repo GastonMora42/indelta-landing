@@ -152,30 +152,32 @@ export function HeroBanner() {
               transition={{ duration: 0.7 }}
               className="relative h-[380px] md:h-[480px] p-1.5 bg-white rounded-2xl shadow-lg border border-gray-200/50 overflow-hidden"
             >
-              {/* Carrusel con efecto de fade */}
-              <div className="relative h-full w-full rounded-xl overflow-hidden">
-                <AnimatePresence mode="wait">
-                  {slides.map((slide, index) => (
-                    index === currentSlide && (
-                      <motion.div
-                        key={slide.id}
-                        initial={{ opacity: 0, scale: 1.05 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.7 }}
-                        className="absolute inset-0"
-                      >
-                        <Image
-                          src={slide.image}
-                          alt={slide.alt}
-                          fill
-                          className="object-cover"
-                          priority={index === 0}
-                        />
-                      </motion.div>
-                    )
-                  ))}
-                </AnimatePresence>
+<div className="relative h-full w-full rounded-xl overflow-hidden">
+  <AnimatePresence mode="wait">
+    {slides.map((slide, index) => (
+      index === currentSlide && (
+        <motion.div
+          key={slide.id}
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.7 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={slide.image}
+            alt={slide.alt}
+            fill
+            className="object-cover"
+            priority={index === 0}
+          />
+          
+          {/* Remove this overlay div to make images clearer */}
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-[#0a325a]/20 to-[#0a325a]/40 pointer-events-none"></div> */}
+        </motion.div>
+      )
+    ))}
+  </AnimatePresence>
                 
                 {/* Indicadores del carrusel */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">

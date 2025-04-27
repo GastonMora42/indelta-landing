@@ -11,10 +11,10 @@ export function EnhancedTestimonials() {
   // Destacado principal
   const featuredTestimonial = {
     name: "Eduardo Martínez",
-    role: "CEO, TechVentures Inc.",
-    quote: "Gracias a Indelta, nuestro portafolio ha superado constantemente al mercado con menor volatilidad. Su enfoque personalizado y estrategias innovadoras han sido fundamentales para nuestro crecimiento financiero.",
+    role: "Dueño de restaurant importante en Buenos Aires",
+    quote: "Gracias a Indelta, Pude superar constantemente al mercado con menor volatilidad. Su enfoque personalizado y estrategias innovadoras han sido fundamentales para nuestro crecimiento financiero.",
     image: "/t-principal.webp", // Añade una imagen profesional aquí
-    company: "techventures.com"
+    company: "Restaurant prestigioso de CABA"
   }
   
   // Testimonios adicionales

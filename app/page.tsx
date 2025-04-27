@@ -51,8 +51,7 @@ export default function Home() {
       
           </div>
 
-          {/* Testimonial CTA */}
-          <TestimonialCta />
+
         </section>
 
         {/* Partner Logo */}
@@ -68,6 +67,8 @@ export default function Home() {
                   Complete esta información para ser contactado por un asesor especializado
                 </p>
               </div>
+                        {/* Testimonial CTA */}
+          <TestimonialCta />
               
               <Card className="p-8 backdrop-blur-sm bg-white shadow-xl border-none overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#aa8c64] to-[#aa8c64]/30"></div>

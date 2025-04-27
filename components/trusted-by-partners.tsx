@@ -135,7 +135,7 @@ export function TrustedByPartnersPremium() {
                   className="mb-6"
                 >
                   <Image
-                    src="/logos/balanz-logo.svg"
+                    src="/balanz.webp"
                     alt="Logo de Balanz"
                     width={180}
                     height={60}
@@ -150,7 +150,7 @@ export function TrustedByPartnersPremium() {
                   viewport={{ once: true }}
                   className="text-2xl font-bold text-[#0a325a] mb-4"
                 >
-                  Abre tu cuenta en Balanz y opera con nosotros
+                  Abrí tu cuenta GRATIS en Balanz y opera con nosotros
                 </motion.h3>
                 
                 <motion.p 
