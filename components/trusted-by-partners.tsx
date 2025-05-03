@@ -84,12 +84,12 @@ export function TrustedByPartnersPremium() {
         >
           <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div className="flex flex-col lg:flex-row items-center">
-              {/* Imagen de Balanz a la izquierda - Contenedor especial para la integración visual */}
-              <div className="lg:w-1/2 p-8 lg:p-12 flex justify-center lg:justify-end relative">
+              {/* Imagen de Balanz a la izquierda - AJUSTADA PARA SER MÁS GRANDE */}
+              <div className="lg:w-1/2 p-6 lg:p-10 flex justify-center lg:justify-end relative">
                 {/* Base que visualmente integra el teléfono con la card */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[200px] h-2 bg-[#0a325a]/10 rounded-t-full blur-sm"></div>
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[240px] h-2 bg-[#0a325a]/10 rounded-t-full blur-sm"></div>
                 
-                {/* Animación mejorada del teléfono */}
+                {/* Animación mejorada del teléfono - TAMAÑO AUMENTADO */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5, y: 100 }}
                   whileInView={{ 
@@ -105,18 +105,18 @@ export function TrustedByPartnersPremium() {
                     duration: 0.8
                   }}
                   viewport={{ once: true }}
-                  className="relative w-[300px] h-[400px]"
+                  className="relative w-[360px] h-[480px]" // Aumentado de w-[300px] h-[400px]
                 >
                   <Image
                     src="/balanz-open.webp"
                     alt="Aplicación de Balanz"
-                    width={600}
-                    height={800}
+                    width={720} // Duplicado para mejor calidad
+                    height={960} // Duplicado para mejor calidad
                     className="object-contain"
                   />
                   
                   {/* Reflejo sutil debajo del teléfono para integrarlo mejor */}
-                  <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-[140px] h-10 bg-[#0a325a]/5 filter blur-md rounded-[50%]"></div>
+                  <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2 w-[180px] h-10 bg-[#0a325a]/5 filter blur-md rounded-[50%]"></div>
                 </motion.div>
               </div>
               
@@ -127,19 +127,20 @@ export function TrustedByPartnersPremium() {
                   Partner estratégico principal
                 </div>
                 
+                {/* LOGO DE BALANZ MÁS GRANDE Y REUBICADO AL CENTRO */}
                 <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                   viewport={{ once: true }}
-                  className="mb-6"
+                  className="mb-6 flex justify-center lg:justify-start"
                 >
                   <Image
                     src="/balanz.webp"
                     alt="Logo de Balanz"
-                    width={180}
-                    height={60}
-                    className="h-12 w-auto object-contain"
+                    width={240}    // Aumentado de 180
+                    height={80}    // Aumentado proporcionalmente
+                    className="h-16 w-auto object-contain" // Aumentado de h-12
                   />
                 </motion.div>
                 
@@ -221,7 +222,7 @@ export function TrustedByPartnersPremium() {
           </div>
         </motion.div>
         
-        {/* Instituciones regulatorias */}
+        {/* Instituciones regulatorias - LOGOS MÁS GRANDES Y TEXTOS MÁS PEQUEÑOS */}
         <div className="mb-8">
           <motion.h3
             initial={{ opacity: 0, y: 20 }}
@@ -254,19 +255,19 @@ export function TrustedByPartnersPremium() {
                   {institution.type}
                 </div>
                 
-                {/* Contenido principal */}
+                {/* Contenido principal con LOGO MÁS GRANDE */}
                 <div className="p-6">
-                  <div className="h-24 flex items-center justify-center mb-6">
+                  <div className="h-32 flex items-center justify-center mb-4">
                     <Image
                       src={institution.logo}
                       alt={`Logo de ${institution.name}`}
-                      width={180}
-                      height={90}
-                      className="object-contain max-h-16"
+                      width={240}  // Aumentado de 180
+                      height={120} // Aumentado de 90
+                      className="object-contain max-h-24" // Aumentado de max-h-16
                     />
                   </div>
                   
-                  <p className="text-gray-600 text-center mb-6">
+                  <p className="text-gray-600 text-center mb-6 text-sm">
                     {institution.description}
                   </p>
                   

@@ -1,146 +1,101 @@
-// components/impact-statistics.tsx
+// components/impact-statictics.tsx
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { ChartBar, Users, TrendingUp, Briefcase } from "lucide-react"
 
-// Definición correcta de tipos para CountUp
 interface CountUpProps {
-    end: number;
-    duration?: number;
-    prefix?: string;
-    suffix?: string;
-  }
+  end: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+}
+
+function CountUp({ end, duration = 1.5, prefix = "", suffix = "" }: CountUpProps) {
+  const [count, setCount] = useState(0);
+  const nodeRef = useRef(null);
+  const [isInView, setIsInView] = useState(false);
   
-  function CountUp({ end, duration = 2, prefix = "", suffix = "" }: CountUpProps) {
-    const [count, setCount] = useState(0);
-    const nodeRef = useRef(null);
-    const isInView = useInView(nodeRef, { once: true, amount: 0.5 });
-    
-    useEffect(() => {
-      if (!isInView) return;
-      
-      let startTime: number;
-      let animationFrame: number;
-      
-      const startAnimation = (timestamp: number) => {
-        startTime = timestamp;
-        animate(timestamp);
-      };
-      
-      const animate = (timestamp: number) => {
-        const runtime = timestamp - startTime;
-        const relativeProgress = runtime / (duration * 1000);
-        
-        if (relativeProgress < 1) {
-          setCount(Math.floor(end * relativeProgress));
-          animationFrame = requestAnimationFrame(animate);
-        } else {
-          setCount(end);
-          cancelAnimationFrame(animationFrame);
-        }
-      };
-      
-      animationFrame = requestAnimationFrame(startAnimation);
-      
-      return () => {
-        cancelAnimationFrame(animationFrame);
-      };
-    }, [end, duration, isInView]);
-    
-    return (
-      <div ref={nodeRef} className="font-bold text-4xl md:text-5xl text-[#0a325a]">
-        {prefix}{new Intl.NumberFormat().format(count)}{suffix}
-      </div>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.1 }
     );
-  }
+    
+    if (nodeRef.current) observer.observe(nodeRef.current);
+    return () => observer.disconnect();
+  }, []);
+  
+  useEffect(() => {
+    if (!isInView) return;
+    
+    const step = Math.ceil(end / 30);
+    let current = 0;
+    
+    const timer = setInterval(() => {
+      current += step;
+      if (current > end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(current);
+      }
+    }, 50);
+    
+    return () => clearInterval(timer);
+  }, [end, isInView]);
+  
+  return (
+    <div ref={nodeRef} className="font-bold text-3xl text-[#007476]">
+      {prefix}{new Intl.NumberFormat().format(count)}{suffix}
+    </div>
+  );
+}
+
 export function ImpactStatistics() {
   // Datos de estadísticas
   const stats = [
-    { 
-      id: 1, 
-      value: 850, 
-      label: "Clientes satisfechos", 
-      icon: Users, 
-      prefix: "+", 
-      suffix: "", 
-      color: "#0a325a" 
-    },
-    { 
-      id: 2, 
-      value: 18, 
-      label: "Rentabilidad anual promedio", 
-      icon: TrendingUp, 
-      prefix: "", 
-      suffix: "%", 
-      color: "#aa8c64" 
-    },
-    { 
-      id: 3, 
-      value: 125, 
-      label: "Empresas asesoradas", 
-      icon: Briefcase, 
-      prefix: "+", 
-      suffix: "", 
-      color: "#93ABC3" 
-    },
-    { 
-      id: 4, 
-      value: 8, 
-      label: "Años de experiencia", 
-      icon: ChartBar, 
-      prefix: "+", 
-      suffix: "", 
-      color: "#99C7C8" 
-    },
+    { id: 1, value: 850, label: "Clientes", icon: Users, prefix: "+", color: "#007476" },
+    { id: 2, value: 18, label: "% Rentabilidad", icon: TrendingUp, suffix: "%", color: "#005D5E" },
+    { id: 3, value: 125, label: "Empresas", icon: Briefcase, prefix: "+", color: "#007476" },
+    { id: 4, value: 8, label: "Años", icon: ChartBar, prefix: "+", color: "#005D5E" },
   ]
 
   return (
-    <section className="py-20 bg-[#0a325a]">
+    <section className="py-12 bg-[#66ACAD]">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Nuestro impacto</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Resultados que hablan por sí mismos</h2>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Un historial probado de rendimiento superior con enfoque en resultados medibles
-          </p>
+        <div className="text-center mb-8">
+          <span className="text-xs font-semibold text-white uppercase tracking-wider mb-1 block">Nuestro impacto</span>
+          <h2 className="text-2xl font-bold text-white mb-2">Resultados que hablan por sí mismos</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 * index }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg p-6 shadow-lg"
+              className="bg-white rounded-md p-4 shadow-sm"
             >
-              <div className="mb-4 w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: `${stat.color}10` }}>
-                {<stat.icon size={32} color={stat.color} />}
+              <div className="flex items-center gap-3 mb-2">
+                <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ backgroundColor: `${stat.color}15` }}>
+                  {<stat.icon size={20} color={stat.color} />}
+                </div>
+                <CountUp end={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
               </div>
-              
-              <CountUp end={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
-              
-              <p className="text-slate-600 mt-3 text-lg">{stat.label}</p>
+              <p className="text-slate-600 text-sm">{stat.label}</p>
             </motion.div>
           ))}
         </div>
         
-        {/* Nota adicional de credibilidad */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <p className="text-white/80 text-lg max-w-3xl mx-auto">
-            Todos los datos están auditados y verificados al cierre del último trimestre fiscal.
-            Nuestros resultados superan consistentemente el promedio del mercado en un 7.2%.
+        <div className="mt-6 text-center">
+          <p className="text-white/80 text-xs">
+            Datos verificados al cierre del último trimestre fiscal.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   )

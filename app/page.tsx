@@ -24,27 +24,20 @@ export default function Home() {
       <Header activePage="home" />
 
       <main className="flex-1">
-        {/* Hero Section with Carousel */}
-        <section className="relative py-10 md:py-16 bg-gray-50">
-          <div className="container relative z-10">
-            <div className="grid grid-cols-1 gap-8">
-              <HeroBanner />
-            </div>
-          </div>
-        </section>
-
+      <section className="relative py-4 md:py-6 bg-gray-50"> {/* Reducido de py-10 md:py-16 */}
+  <div className="container relative z-10">
+    <div className="grid grid-cols-1 gap-4"> {/* También reducido el gap de 8 a 6 */}
+      <HeroBanner />
+    </div>
+  </div>
+</section>
+<ServicesSection />
         {/* Why Choose Us Section - Reorganized */}
         <WhyChooseUsSection />
-
-        {/* Servicios Section */}
-            <ServicesSection />
-
             <TrustedBrandsCarousel />
             <ImpactStatistics />
-      
-
         {/* Testimonials Section */}
-        <section id="testimonials" className="py-16 bg-white relative">
+        <section id="testimonials" className="py-8 bg-white relative">
           <div className="container">
 
             <EnhancedTestimonials />
@@ -79,97 +72,101 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-[#0a325a] text-white py-12">
-        <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <Image
-                  src="/logo.png"
-                  alt="Indelta"
-                  width={40}
-                  height={40}
-                  className="h-10 w-auto bg-white rounded-full p-1"
-                />
-                <span className="text-xl font-bold">Indelta</span>
-              </div>
-              <p className="text-sm text-gray-300">
-                Asesoramiento financiero premium para inversores de segmento medio.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Enlaces rápidos</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="#why-us" className="text-gray-300 hover:text-white transition-colors">
-                    ¿Por qué elegirnos?
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#process" className="text-gray-300 hover:text-white transition-colors">
-                    Nuestro proceso
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#testimonials" className="text-gray-300 hover:text-white transition-colors">
-                    Testimonios
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#contact" className="text-gray-300 hover:text-white transition-colors">
-                    Contacto
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Certificaciones</h3>
-              <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#0a325a] text-xs font-bold">✓</span>
-                  </div>
-                  <span>Agente de Liquidación y Compensación</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#0a325a] text-xs font-bold">✓</span>
-                  </div>
-                  <span>Asesor Financiero Certificado</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-                    <span className="text-[#0a325a] text-xs font-bold">✓</span>
-                  </div>
-                  <span>Miembro de la Bolsa de Valores</span>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold text-lg mb-4">Contacto</h3>
-              <address className="not-italic text-sm text-gray-300 space-y-2">
-                <p>Av. Financiera 123, Piso 4</p>
-                <p>Buenos Aires, Argentina</p>
-                <p>info@indelta.com</p>
-                <p>+54 11 5555-5555</p>
-              </address>
-            </div>
-          </div>
-
-          <div className="mt-12 pt-6 border-t border-gray-700 text-center text-sm text-gray-400">
-            <p>© {new Date().getFullYear()} Indelta. Todos los derechos reservados.</p>
-            <p className="mt-2">
-              La información proporcionada en este sitio no constituye asesoramiento financiero. Las inversiones están
-              sujetas a riesgos de mercado.
-            </p>
-          </div>
+{/* Footer con paleta de verdes */}
+<footer className="bg-[#004647] text-white py-12">
+  <div className="container">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div className="flex items-center gap-2 mb-4">
+          <Image
+            src="/logo.png"
+            alt="Indelta"
+            width={40}
+            height={40}
+            className="h-10 w-auto bg-white rounded-full p-1"
+          />
+          <span className="text-xl font-bold">Indelta</span>
         </div>
-        
-      </footer>
+        <p className="text-sm text-[#99C7C8]">
+          Asesoramiento financiero premium para inversores de segmento medio.
+        </p>
+      </div>
+
+      <div>
+        <h3 className="font-semibold text-lg mb-4">Enlaces rápidos</h3>
+        <ul className="space-y-2">
+          <li>
+            <Link href="#why-us" className="text-[#99C7C8] hover:text-white transition-colors">
+              ¿Por qué elegirnos?
+            </Link>
+          </li>
+          <li>
+            <Link href="#process" className="text-[#99C7C8] hover:text-white transition-colors">
+              Nuestro proceso
+            </Link>
+          </li>
+          <li>
+            <Link href="#testimonials" className="text-[#99C7C8] hover:text-white transition-colors">
+              Testimonios
+            </Link>
+          </li>
+          <li>
+            <Link href="/blog" className="text-[#99C7C8] hover:text-white transition-colors">
+              Blog
+            </Link>
+          </li>
+          <li>
+            <Link href="#contact" className="text-[#99C7C8] hover:text-white transition-colors">
+              Contacto
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="font-semibold text-lg mb-4">Certificaciones</h3>
+        <ul className="space-y-2 text-sm">
+          <li className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-[#66ACAD] rounded-full flex items-center justify-center">
+              <span className="text-white text-xs font-bold">✓</span>
+            </div>
+            <span>Agente de Liquidación y Compensación</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-[#66ACAD] rounded-full flex items-center justify-center">
+              <span className="text-white text-xs font-bold">✓</span>
+            </div>
+            <span>Asesor Financiero Certificado</span>
+          </li>
+          <li className="flex items-center gap-2">
+            <div className="w-6 h-6 bg-[#66ACAD] rounded-full flex items-center justify-center">
+              <span className="text-white text-xs font-bold">✓</span>
+            </div>
+            <span>Miembro de la Bolsa de Valores</span>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 className="font-semibold text-lg mb-4">Contacto</h3>
+        <address className="not-italic text-sm text-[#99C7C8] space-y-2">
+          <p>Av. Financiera 123, Piso 4</p>
+          <p>Buenos Aires, Argentina</p>
+          <p>info@indelta.com</p>
+          <p>+54 11 5555-5555</p>
+        </address>
+      </div>
+    </div>
+
+    <div className="mt-12 pt-6 border-t border-[#66ACAD]/30 text-center text-sm text-[#99C7C8]">
+      <p>© {new Date().getFullYear()} Indelta. Todos los derechos reservados.</p>
+      <p className="mt-2">
+        La información proporcionada en este sitio no constituye asesoramiento financiero. Las inversiones están
+        sujetas a riesgos de mercado.
+      </p>
+    </div>
+  </div>
+</footer>
 {/* WhatsApp Floating Button - Versión sin framer-motion */}
 <div className="fixed bottom-6 right-6 z-50">
   <div className="relative group">

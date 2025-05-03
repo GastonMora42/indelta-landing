@@ -47,7 +47,8 @@ export function HeroBanner() {
     { id: "inv", text: "Inversiones seguras" },
     { id: "crec", text: "Crecimiento constante" },
     { id: "prot", text: "Protección patrimonial" },
-    { id: "rent", text: "Rentabilidad sostenible" }
+    { id: "rent", text: "Rentabilidad sostenible" },
+    { id: "rent", text: "Inversiones en Real State" }
   ]
   
   // Rotación automática del carrusel
@@ -93,24 +94,22 @@ export function HeroBanner() {
                 Soluciones de inversión personalizadas que priorizan la seguridad y maximizan el rendimiento de tu patrimonio.
               </p>
               
-              {/* Cards con checks */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
-                {highlights.map((item, index) => (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: 0.3 + (index * 0.1) }}
-                    whileHover={{ scale: 1.02 }}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-[#4CAF50]/5 border border-[#4CAF50]/20 hover:bg-[#4CAF50]/10 transition-colors"
-                  >
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#4CAF50] flex items-center justify-center shadow-sm">
-                      <Check className="h-3 w-3 text-white" />
-                    </div>
-                    <span className="text-[#0a325a] font-medium">{item.text}</span>
-                  </motion.div>
-                ))}
-              </div>
+<div className="flex flex-wrap gap-4 mb-8">
+  {highlights.map((item, index) => (
+    <motion.div
+      key={item.id}
+      initial={{ opacity: 0, x: -5 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3, delay: 0.1 + (index * 0.1) }}
+      className="flex items-center gap-2 border-b border-transparent hover:border-[#4CAF50]/20 py-1 transition-all"
+    >
+      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#4CAF50]/10 flex items-center justify-center">
+        <Check className="h-2.5 w-2.5 text-[#4CAF50]" />
+      </div>
+      <span className="text-[#0a325a] text-sm font-light tracking-wide">{item.text}</span>
+    </motion.div>
+  ))}
+</div>
               
               {/* Buttons - CTA */}
               <div className="flex flex-col sm:flex-row gap-4">

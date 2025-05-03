@@ -45,15 +45,15 @@ export function Header({ activePage = "home" }: HeaderProps) {
     <header 
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         scrolled 
-          ? "bg-white/95 backdrop-blur-sm shadow-md border-b border-gray-200/50" 
-          : "bg-white border-b"
+          ? "bg-[#007476]/95 backdrop-blur-sm shadow-md border-b border-[#99C7C8]/20" 
+          : "bg-[#007476] border-b border-[#99C7C8]/10"
       }`}
     >
       <div className="container flex h-16 md:h-20 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Indelta" width={40} height={40} className="h-10 w-auto" />
-          <span className="text-xl font-bold text-[#0a325a]">Indelta</span>
+        <Link href="/" className="flex items-center gap-3 pl-6">
+          <Image src="/logo.png" alt="Indelta" width={48} height={48} className="h-12 w-auto bg-white rounded-full p-1" />
+          <span className="text-2xl font-bold text-white">Indelta</span>
         </Link>
         
         {/* Desktop Navigation */}
@@ -62,24 +62,24 @@ export function Header({ activePage = "home" }: HeaderProps) {
             <>
               <Link
                 href="#why-us"
-                className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3]"
+                className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8]"
               >
                 ¿Por qué elegirnos?
               </Link>
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3] flex items-center gap-1">
+                  <button className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8] flex items-center gap-1">
                     Servicios
                     <ChevronDown className="h-3.5 w-3.5 opacity-70" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="center" className="w-56">
+                <DropdownMenuContent align="center" className="w-56 bg-[#007476] border-[#99C7C8]/20">
                   {serviceItems.map((item, index) => (
                     <DropdownMenuItem key={index} asChild>
                       <Link 
                         href={item.href}
-                        className="cursor-pointer flex w-full px-4 py-2 text-sm hover:bg-[#0a325a]/5"
+                        className="cursor-pointer flex w-full px-4 py-2 text-sm text-white hover:bg-[#99C7C8]/20"
                       >
                         {item.label}
                       </Link>
@@ -90,21 +90,21 @@ export function Header({ activePage = "home" }: HeaderProps) {
               
               <Link
                 href="#testimonials"
-                className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3]"
+                className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8]"
               >
                 Testimonios
               </Link>
               
               <Link
                 href="/blog"
-                className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3]"
+                className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8]"
               >
                 Blog
               </Link>
               
               <Link
                 href="#contact"
-                className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3]"
+                className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8]"
               >
                 Contacto
               </Link>
@@ -113,24 +113,24 @@ export function Header({ activePage = "home" }: HeaderProps) {
             <>
               <Link
                 href="/#why-us"
-                className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3]"
+                className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8]"
               >
                 ¿Por qué elegirnos?
               </Link>
               
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3] flex items-center gap-1">
+                  <button className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8] flex items-center gap-1">
                     Servicios
                     <ChevronDown className="h-3.5 w-3.5 opacity-70" />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="center" className="w-56">
+                <DropdownMenuContent align="center" className="w-56 bg-[#007476] border-[#99C7C8]/20">
                   {serviceItems.map((item, index) => (
                     <DropdownMenuItem key={index} asChild>
                       <Link 
                         href={item.href}
-                        className="cursor-pointer flex w-full px-4 py-2 text-sm hover:bg-[#0a325a]/5"
+                        className="cursor-pointer flex w-full px-4 py-2 text-sm text-white hover:bg-[#99C7C8]/20"
                       >
                         {item.label}
                       </Link>
@@ -141,15 +141,15 @@ export function Header({ activePage = "home" }: HeaderProps) {
               
               <Link
                 href="/#testimonials"
-                className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3]"
+                className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8]"
               >
                 Testimonios
               </Link>
               
               <Link
                 href="/blog"
-                className={`text-[#0a325a] transition-colors text-base font-medium py-1.5 px-1 border-b-2 ${
-                  activePage === "blog" ? "border-[#aa8c64]" : "border-transparent hover:border-[#93ABC3]"
+                className={`text-white transition-colors text-base font-medium py-1.5 px-1 border-b-2 ${
+                  activePage === "blog" ? "border-[#99C7C8]" : "border-transparent hover:border-[#99C7C8]"
                 }`}
               >
                 Blog
@@ -157,7 +157,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
               
               <Link
                 href="/#contact"
-                className="text-[#0a325a] hover:text-[#93ABC3] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#93ABC3]"
+                className="text-white hover:text-[#99C7C8] transition-colors text-base font-medium py-1.5 px-1 border-b-2 border-transparent hover:border-[#99C7C8]"
               >
                 Contacto
               </Link>
@@ -169,7 +169,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
           {/* Balanz Link - Para sección partners */}
           <Link 
             href="/#trusted-by-partners"
-            className="hidden md:flex items-center text-[#aa8c64] hover:text-[#aa8c64]/80 font-medium text-sm transition-colors"
+            className="hidden md:flex items-center text-[#99C7C8] hover:text-white font-medium text-sm transition-colors"
           >
             Socios estrategicos de Balanz
           </Link>
@@ -179,7 +179,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
             whileTap={{ scale: 0.97 }}
           >
             <Button 
-              className="bg-[#0a325a] hover:bg-[#0a325a]/90 text-white text-sm px-4 py-2 h-9 hidden sm:flex"
+              className="bg-white hover:bg-[#99C7C8] text-[#007476] hover:text-[#005D5E] font-medium text-sm px-4 py-2 h-9 hidden sm:flex"
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Agenda una consulta
@@ -189,7 +189,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
           {/* Mobile Menu Toggle */}
           <button 
             onClick={toggleMenu}
-            className="text-[#0a325a] md:hidden p-1"
+            className="text-white md:hidden p-1"
             aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -205,21 +205,21 @@ export function Header({ activePage = "home" }: HeaderProps) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t"
+            className="md:hidden bg-[#007476] border-t border-[#99C7C8]/20"
           >
             <nav className="container py-4 flex flex-col gap-2">
               {activePage === "home" ? (
                 <>
                   <Link
                     href="#why-us"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     ¿Por qué elegirnos?
                   </Link>
                   
                   <div className="flex flex-col">
-                    <div className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100 flex justify-between items-center">
+                    <div className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20 flex justify-between items-center">
                       Servicios
                       <ChevronDown className="h-4 w-4" />
                     </div>
@@ -228,7 +228,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                         <Link
                           key={index}
                           href={item.href}
-                          className="text-[#0a325a]/80 text-sm py-1.5"
+                          className="text-white/80 text-sm py-1.5 hover:text-[#99C7C8]"
                           onClick={toggleMenu}
                         >
                           {item.label}
@@ -239,7 +239,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="#testimonials"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Testimonios
@@ -247,7 +247,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="#partners"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Socios Balanz
@@ -255,7 +255,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="/blog"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Blog
@@ -263,7 +263,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="#contact"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Contacto
@@ -273,14 +273,14 @@ export function Header({ activePage = "home" }: HeaderProps) {
                 <>
                   <Link
                     href="/#why-us"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     ¿Por qué elegirnos?
                   </Link>
                   
                   <div className="flex flex-col">
-                    <div className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100 flex justify-between items-center">
+                    <div className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20 flex justify-between items-center">
                       Servicios
                       <ChevronDown className="h-4 w-4" />
                     </div>
@@ -289,7 +289,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                         <Link
                           key={index}
                           href={item.href}
-                          className="text-[#0a325a]/80 text-sm py-1.5"
+                          className="text-white/80 text-sm py-1.5 hover:text-[#99C7C8]"
                           onClick={toggleMenu}
                         >
                           {item.label}
@@ -300,7 +300,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="/#testimonials"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Testimonios
@@ -308,7 +308,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="/#partners"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Socios Balanz
@@ -316,7 +316,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="/blog"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Blog
@@ -324,7 +324,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   
                   <Link
                     href="/#contact"
-                    className="text-[#0a325a] text-base font-medium py-2 border-b border-gray-100"
+                    className="text-white text-base font-medium py-2 border-b border-[#99C7C8]/20"
                     onClick={toggleMenu}
                   >
                     Contacto
@@ -333,7 +333,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
               )}
               <div className="mt-3">
                 <Button 
-                  className="w-full bg-[#0a325a] hover:bg-[#0a325a]/90 text-white text-sm py-2 h-10"
+                  className="w-full bg-white hover:bg-[#99C7C8] text-[#007476] hover:text-[#005D5E] font-medium text-sm py-2 h-10"
                   onClick={() => {
                     toggleMenu();
                     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
