@@ -1,165 +1,278 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { CheckCircle2, FileText, Users, TrendingUp } from "lucide-react"
-import { motion, useInView, useAnimation } from "framer-motion"
+import { motion, useAnimation, useInView, Variants } from "framer-motion"
 
 export function ProcessSteps() {
   const controls = useAnimation()
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
+  const containerRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(containerRef, { once: true, amount: 0.3 })
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [activeStep, setActiveStep] = useState<number | null>(null)
 
+  // Detectar preferencias de movimiento reducido
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      setPrefersReducedMotion(mediaQuery.matches)
+      
+      const handleChange = () => setPrefersReducedMotion(mediaQuery.matches)
+      mediaQuery.addEventListener('change', handleChange)
+      return () => mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [])
+
+  // Iniciar animación cuando esté en vista
   useEffect(() => {
     if (isInView) {
       controls.start("visible")
     }
   }, [controls, isInView])
 
-  const containerVariants = {
+  // Datos de los pasos del proceso
+  const steps = [
+    {
+      icon: FileText,
+      color: "#0a325a",
+      title: "Evaluación inicial",
+      description: "Analizamos tu situación financiera actual, objetivos y tolerancia al riesgo.",
+      number: 1
+    },
+    {
+      icon: CheckCircle2,
+      color: "#93ABC3",
+      title: "Diseño de estrategia",
+      description: "Creamos un plan personalizado basado en tus necesidades específicas.",
+      number: 2
+    },
+    {
+      icon: Users,
+      color: "#99C7C8",
+      title: "Implementación",
+      description: "Ejecutamos la estrategia con un enfoque meticuloso y transparente.",
+      number: 3
+    },
+    {
+      icon: TrendingUp,
+      color: "#aa8c64",
+      title: "Seguimiento continuo",
+      description: "Monitoreamos y ajustamos tu cartera para adaptarnos a los cambios del mercado.",
+      number: 4
+    }
+  ]
+
+  // Variantes de animación
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: prefersReducedMotion ? 0.1 : 0.3,
+        delayChildren: 0.1
       },
     },
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
+  const stepVariants: Variants = {
+    hidden: { 
+      opacity: 0, 
+      y: prefersReducedMotion ? 10 : 40
+    },
+    visible: (i: number) => ({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
-        ease: "easeOut",
+        type: prefersReducedMotion ? "tween" : "spring",
+        damping: 12,
+        stiffness: 50,
+        duration: prefersReducedMotion ? 0.3 : 0.6,
+        delay: i * 0.1
       },
-    },
+    }),
   }
 
-  const circleVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
+  const circleVariants: Variants = {
+    hidden: { 
+      scale: 0.7, 
+      opacity: 0 
+    },
+    visible: (i: number) => ({
       scale: 1,
       opacity: 1,
       transition: {
-        duration: 0.4,
-        ease: "easeOut",
+        type: "spring",
+        damping: 10,
+        stiffness: 80,
+        delay: 0.05 + (i * 0.1)
       },
-    },
-  }
-
-  const pulseVariants = {
-    hidden: { scale: 1, opacity: 0.5 },
-    visible: {
-      scale: [1, 1.05, 1],
-      opacity: [0.5, 0.8, 0.5],
+    }),
+    hover: {
+      scale: 1.05,
+      boxShadow: "0 10px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)",
       transition: {
-        duration: 2,
-        repeat: Number.POSITIVE_INFINITY,
-        repeatType: "reverse",
+        type: "spring",
+        stiffness: 300,
+        damping: 15
+      }
+    }
+  }
+
+  const numberBadgeVariants: Variants = {
+    hidden: { 
+      scale: 0, 
+      opacity: 0 
+    },
+    visible: (i: number) => ({
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        damping: 8,
+        stiffness: 200,
+        delay: 0.2 + (i * 0.15)
+      },
+    }),
+  }
+
+  const pulseVariants: Variants = {
+    hidden: { 
+      scale: 1, 
+      opacity: 0.5 
+    },
+    visible: {
+      scale: [1, 1.03, 1],
+      opacity: [0.5, 0.7, 0.5],
+      transition: {
+        duration: 2.5,
+        repeat: Infinity,
+        repeatType: "mirror",
+        ease: "easeInOut"
       },
     },
   }
 
+  const lineConnectorVariants: Variants = {
+    hidden: {
+      width: "0%",
+      opacity: 0
+    },
+    visible: {
+      width: "100%",
+      opacity: 1,
+      transition: {
+        delay: 0.5,
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  // Renderizado del componente
   return (
     <motion.div
-      ref={ref}
+      ref={containerRef}
       variants={containerVariants}
       initial="hidden"
       animate={controls}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+      className="w-full py-16 max-w-[1400px] mx-auto"
     >
-      <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-        <motion.div
-          variants={circleVariants}
-          className="w-20 h-20 rounded-full bg-[#0a325a] text-white flex items-center justify-center mb-4 relative"
-        >
-          <FileText className="h-10 w-10" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-6 px-6 relative">
+        {/* Líneas conectoras (solo en desktop) */}
+        <div className="absolute top-[60px] left-0 w-full hidden lg:flex justify-center z-0 px-28">
           <motion.div
-            className="absolute -right-3 -top-3 w-8 h-8 bg-[#aa8c64] rounded-full flex items-center justify-center text-sm font-bold text-white"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1, duration: 0.3, type: "spring" }}
-          >
-            1
-          </motion.div>
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-[#0a325a]/30"
-            variants={pulseVariants}
-          ></motion.div>
-        </motion.div>
-        <h3 className="text-xl font-semibold text-[#0a325a] mt-4 mb-2">Evaluación inicial</h3>
-        <p className="text-slate-600">Analizamos tu situación financiera actual, objetivos y tolerancia al riesgo.</p>
-      </motion.div>
+            variants={lineConnectorVariants}
+            className="h-0.5 bg-gradient-to-r from-[#0a325a]/20 via-[#93ABC3]/40 to-[#aa8c64]/20 w-[80%]"
+          />
+        </div>
 
-      <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-        <motion.div
-          variants={circleVariants}
-          className="w-20 h-20 rounded-full bg-[#93ABC3] text-white flex items-center justify-center mb-4 relative"
-        >
-          <CheckCircle2 className="h-10 w-10" />
+        {steps.map((step, index) => (
           <motion.div
-            className="absolute -right-3 -top-3 w-8 h-8 bg-[#aa8c64] rounded-full flex items-center justify-center text-sm font-bold text-white"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1.2, duration: 0.3, type: "spring" }}
+            key={index}
+            custom={index}
+            variants={stepVariants}
+            className="flex flex-col items-center text-center relative"
+            whileHover={{ 
+              y: prefersReducedMotion ? 0 : -5,
+              transition: { duration: 0.3 }
+            }}
+            onMouseEnter={() => setActiveStep(index)}
+            onMouseLeave={() => setActiveStep(null)}
           >
-            2
+            {/* Círculo con icono */}
+            <div className="relative mb-6">
+              <motion.div
+                custom={index}
+                variants={circleVariants}
+                whileHover={prefersReducedMotion ? {} : "hover"}
+                className="w-24 h-24 rounded-full flex items-center justify-center relative z-10"
+                style={{ 
+                  background: `radial-gradient(circle at 30% 30%, ${step.color}, ${step.color}ee)`
+                }}
+              >
+                <step.icon 
+                  className="h-12 w-12"
+                  color="white"
+                />
+                
+                {/* Efecto de pulso */}
+                {!prefersReducedMotion && (
+                  <motion.div
+                    variants={pulseVariants}
+                    className="absolute inset-0 rounded-full border-2 border-white/20"
+                    style={{ 
+                      boxShadow: `0 0 15px ${step.color}80`,
+                      background: `radial-gradient(circle at 30% 30%, ${step.color}50, ${step.color}00)`,
+                    }}
+                  />
+                )}
+              </motion.div>
+              
+              {/* Número del paso */}
+              <motion.div
+                custom={index}
+                variants={numberBadgeVariants}
+                className="absolute -top-2 -right-2 w-9 h-9 rounded-full bg-[#aa8c64] shadow-lg flex items-center justify-center text-white font-bold z-20"
+              >
+                {step.number}
+              </motion.div>
+            </div>
+            
+            {/* Contenido de texto */}
+            <motion.h3
+              initial={{ opacity: 0, y: 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ 
+                delay: 0.3 + (index * 0.1),
+                duration: 0.5
+              }}
+              className="text-xl font-semibold text-[#0a325a] mb-3"
+            >
+              {step.title}
+            </motion.h3>
+            
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ 
+                delay: 0.4 + (index * 0.1),
+                duration: 0.5
+              }}
+              className="text-slate-600 max-w-xs mx-auto"
+            >
+              {step.description}
+            </motion.p>
+            
+            {/* Indicador de paso activo */}
+            <motion.div 
+              className="h-1 w-16 rounded-full mt-4 bg-transparent"
+              animate={{
+                backgroundColor: activeStep === index ? step.color : "transparent",
+                transition: { duration: 0.3 }
+              }}
+            />
           </motion.div>
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-[#93ABC3]/30"
-            variants={pulseVariants}
-          ></motion.div>
-        </motion.div>
-        <h3 className="text-xl font-semibold text-[#0a325a] mt-4 mb-2">Diseño de estrategia</h3>
-        <p className="text-slate-600">Creamos un plan personalizado basado en tus necesidades específicas.</p>
-      </motion.div>
-
-      <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-        <motion.div
-          variants={circleVariants}
-          className="w-20 h-20 rounded-full bg-[#99C7C8] text-white flex items-center justify-center mb-4 relative"
-        >
-          <Users className="h-10 w-10" />
-          <motion.div
-            className="absolute -right-3 -top-3 w-8 h-8 bg-[#aa8c64] rounded-full flex items-center justify-center text-sm font-bold text-white"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1.4, duration: 0.3, type: "spring" }}
-          >
-            3
-          </motion.div>
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-[#99C7C8]/30"
-            variants={pulseVariants}
-          ></motion.div>
-        </motion.div>
-        <h3 className="text-xl font-semibold text-[#0a325a] mt-4 mb-2">Implementación</h3>
-        <p className="text-slate-600">Ejecutamos la estrategia con un enfoque meticuloso y transparente.</p>
-      </motion.div>
-
-      <motion.div variants={itemVariants} className="flex flex-col items-center text-center">
-        <motion.div
-          variants={circleVariants}
-          className="w-20 h-20 rounded-full bg-[#aa8c64] text-white flex items-center justify-center mb-4 relative"
-        >
-          <TrendingUp className="h-10 w-10" />
-          <motion.div
-            className="absolute -right-3 -top-3 w-8 h-8 bg-[#0a325a] rounded-full flex items-center justify-center text-sm font-bold text-white"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1.6, duration: 0.3, type: "spring" }}
-          >
-            4
-          </motion.div>
-          <motion.div
-            className="absolute inset-0 rounded-full border-2 border-[#aa8c64]/30"
-            variants={pulseVariants}
-          ></motion.div>
-        </motion.div>
-        <h3 className="text-xl font-semibold text-[#0a325a] mt-4 mb-2">Seguimiento continuo</h3>
-        <p className="text-slate-600">Monitoreamos y ajustamos tu cartera para adaptarnos a los cambios del mercado.</p>
-      </motion.div>
+        ))}
+      </div>
     </motion.div>
   )
 }
