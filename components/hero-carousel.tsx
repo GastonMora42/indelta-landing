@@ -1,4 +1,4 @@
-// components/hero-banner.tsx
+// components/hero-carousel.tsx - VERSIÓN MEJORADA
 "use client"
 
 import { useState, useEffect, useRef } from "react"
@@ -42,13 +42,13 @@ export function HeroBanner() {
     }
   ]
   
-  // Puntos destacados con iconos de check
+  // Puntos destacados con iconos de check - MEJORADOS CON VERDE OSCURO Y NEGRITA
   const highlights = [
     { id: "inv", text: "Inversiones seguras" },
     { id: "crec", text: "Crecimiento constante" },
     { id: "prot", text: "Protección patrimonial" },
     { id: "rent", text: "Rentabilidad sostenible" },
-    { id: "rent", text: "Inversiones en Real State" }
+    { id: "real", text: "Inversiones en Real Estate" }
   ]
   
   // Rotación automática del carrusel
@@ -60,8 +60,8 @@ export function HeroBanner() {
   }, [slides.length])
   
   return (
-    <section ref={sectionRef} className="py-10 md:py-16 bg-[#F8F9FC] overflow-hidden relative">
-      {/* Efecto de luz dorada reluciente */}
+    <section ref={sectionRef} className="py-12 md:py-20 bg-[#F8F9FC] overflow-hidden relative">
+      {/* Efecto de luz verde reluciente */}
       <motion.div
         className="absolute top-0 left-10 w-[500px] h-[500px] rounded-full opacity-0"
         initial={{ opacity: 0, scale: 0.5 }}
@@ -70,14 +70,14 @@ export function HeroBanner() {
           opacity: glowOpacity,
           scale: glowScale,
           y: glowY,
-          background: 'radial-gradient(circle, rgba(170,140,100,0.3) 0%, rgba(170,140,100,0.1) 40%, rgba(255,255,255,0) 70%)',
+          background: 'radial-gradient(circle, rgba(102,172,173,0.3) 0%, rgba(102,172,173,0.1) 40%, rgba(255,255,255,0) 70%)',
           filter: 'blur(40px)',
           zIndex: 1
         }}
       />
       
       <div className="container mx-auto max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Columna izquierda - Contenido de texto */}
           <div className="lg:col-span-6 px-4 md:px-6">
             <motion.div
@@ -86,44 +86,45 @@ export function HeroBanner() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#0a325a] leading-tight mb-4 relative z-20">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#004647] leading-tight mb-6 relative z-20">
                 Todo lo que necesitas para tu éxito financiero
               </h1>
               
-              <p className="text-lg md:text-xl text-slate-600 mb-8">
+              <p className="text-xl md:text-2xl text-slate-600 mb-10 leading-relaxed">
                 Soluciones de inversión personalizadas que priorizan la seguridad y maximizan el rendimiento de tu patrimonio.
               </p>
               
-<div className="flex flex-wrap gap-4 mb-8">
-  {highlights.map((item, index) => (
-    <motion.div
-      key={item.id}
-      initial={{ opacity: 0, x: -5 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3, delay: 0.1 + (index * 0.1) }}
-      className="flex items-center gap-2 border-b border-transparent hover:border-[#4CAF50]/20 py-1 transition-all"
-    >
-      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#4CAF50]/10 flex items-center justify-center">
-        <Check className="h-2.5 w-2.5 text-[#4CAF50]" />
-      </div>
-      <span className="text-[#0a325a] text-sm font-light tracking-wide">{item.text}</span>
-    </motion.div>
-  ))}
-</div>
+              {/* CHECKS MEJORADOS CON VERDE OSCURO Y NEGRITA */}
+              <div className="flex flex-wrap gap-6 mb-10">
+                {highlights.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: -5 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: 0.1 + (index * 0.1) }}
+                    className="flex items-center gap-3 border-b border-transparent hover:border-[#66ACAD]/30 py-2 transition-all"
+                  >
+                    <div className="flex-shrink-0 w-7 h-7 rounded-full bg-[#004647] flex items-center justify-center shadow-md">
+                      <Check className="h-4 w-4 text-white font-bold" />
+                    </div>
+                    <span className="text-[#004647] text-base font-bold tracking-wide">{item.text}</span>
+                  </motion.div>
+                ))}
+              </div>
               
-              {/* Buttons - CTA */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              {/* Buttons - CTA MEJORADOS */}
+              <div className="flex flex-col sm:flex-row gap-6">
                 <motion.div
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   className="flex-1"
                 >
-                  <Button className="w-full bg-[#0a325a] hover:bg-[#0a325a]/90 text-white py-6 text-base md:text-lg relative overflow-hidden group shadow-md">
-                    <span className="relative z-10 flex items-center">
+                  <Button className="w-full bg-[#004647] hover:bg-[#66ACAD] text-white py-7 text-lg md:text-xl relative overflow-hidden group shadow-lg border-2 border-[#004647] hover:border-[#66ACAD] transition-all duration-300">
+                    <span className="relative z-10 flex items-center font-bold">
                       Comenzar ahora
-                      <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="ml-3 h-6 w-6 transition-transform group-hover:translate-x-1" />
                     </span>
-                    <span className="absolute inset-0 bg-gradient-to-r from-[#0a325a] to-[#aa8c64] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#004647] to-[#66ACAD] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></span>
                   </Button>
                 </motion.div>
                 
@@ -132,10 +133,15 @@ export function HeroBanner() {
                   whileTap={{ scale: 0.97 }}
                   className="flex-1"
                 >
-                  <Button variant="outline" className="w-full border-[#aa8c64] text-[#aa8c64] hover:bg-[#aa8c64]/5 py-6 text-base md:text-lg group shadow-sm">
+                  {/* BOTÓN VERDE OSCURO INVERTIDO */}
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-2 border-[#004647] bg-[#004647] text-white hover:bg-white hover:text-[#004647] py-7 text-lg md:text-xl group shadow-lg transition-all duration-300 font-bold"
+                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                  >
                     <span className="flex items-center">
                       Agendar consulta
-                      <ExternalLink className="ml-2 h-5 w-5 transition-all group-hover:rotate-45" />
+                      <ExternalLink className="ml-3 h-6 w-6 transition-all group-hover:rotate-45" />
                     </span>
                   </Button>
                 </motion.div>
@@ -149,53 +155,50 @@ export function HeroBanner() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7 }}
-              className="relative h-[380px] md:h-[480px] p-1.5 bg-white rounded-2xl shadow-lg border border-gray-200/50 overflow-hidden"
+              className="relative h-[400px] md:h-[520px] p-2 bg-white rounded-2xl shadow-xl border border-[#66ACAD]/20 overflow-hidden"
             >
-<div className="relative h-full w-full rounded-xl overflow-hidden">
-  <AnimatePresence mode="wait">
-    {slides.map((slide, index) => (
-      index === currentSlide && (
-        <motion.div
-          key={slide.id}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.7 }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={slide.image}
-            alt={slide.alt}
-            fill
-            className="object-cover"
-            priority={index === 0}
-          />
-          
-          {/* Remove this overlay div to make images clearer */}
-          {/* <div className="absolute inset-0 bg-gradient-to-b from-[#0a325a]/20 to-[#0a325a]/40 pointer-events-none"></div> */}
-        </motion.div>
-      )
-    ))}
-  </AnimatePresence>
+              <div className="relative h-full w-full rounded-xl overflow-hidden">
+                <AnimatePresence mode="wait">
+                  {slides.map((slide, index) => (
+                    index === currentSlide && (
+                      <motion.div
+                        key={slide.id}
+                        initial={{ opacity: 0, scale: 1.05 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.7 }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={slide.image}
+                          alt={slide.alt}
+                          fill
+                          className="object-cover"
+                          priority={index === 0}
+                        />
+                      </motion.div>
+                    )
+                  ))}
+                </AnimatePresence>
                 
                 {/* Indicadores del carrusel */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3">
                   {slides.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentSlide(index)}
-                      className={`h-2 rounded-full transition-all ${
+                      className={`h-3 rounded-full transition-all shadow-md ${
                         index === currentSlide 
-                          ? "w-8 bg-white" 
-                          : "w-2 bg-white/60 hover:bg-white/80"
+                          ? "w-10 bg-[#004647]" 
+                          : "w-3 bg-white/60 hover:bg-white/80"
                       }`}
                       aria-label={`Ir a diapositiva ${index + 1}`}
                     />
                   ))}
                 </div>
                 
-                {/* Overlay para mejorar la visibilidad */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0a325a]/20 to-[#0a325a]/40 pointer-events-none"></div>
+                {/* Overlay sutil para mejorar la visibilidad */}
+                <div className="absolute inset-0 bg-gradient-to-b from-[#004647]/10 to-[#004647]/20 pointer-events-none"></div>
               </div>
             </motion.div>
           </div>

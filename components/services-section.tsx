@@ -1,4 +1,4 @@
-// components/services-section.tsx (Rediseñado)
+// components/services-section.tsx - VERSIÓN MEJORADA
 "use client"
 
 import { useState } from "react"
@@ -25,7 +25,7 @@ type ServiceCard = {
   image: string
   buttonText?: string
   buttonLink?: string
-  wide?: boolean // Para controlar si la card es más ancha
+  wide?: boolean
 }
 
 export function ServicesSection() {
@@ -147,29 +147,31 @@ export function ServicesSection() {
   const activeService = services[activeServiceIndex]
 
   return (
-    <section id="servicios" className="py-16 bg-gray-50 relative overflow-hidden">
+    <section id="servicios" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent"></div>
       
-      <div className="container max-w-5xl mx-auto relative z-10">
+      {/* MISMO ANCHO DEL HEADER - CONTENEDOR AMPLIADO */}
+      <div className="w-full max-w-[1400px] mx-auto px-4 md:px-8 relative z-10">
         {/* Section header */}
-        <div className="text-center mb-8">
-          <span className="text-sm font-semibold text-[#aa8c64] uppercase tracking-wider mb-2 block">Especialización</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#0a325a] mb-3">Tu exito financiero comienza aqui</h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
+        <div className="text-center mb-12">
+          <span className="text-sm font-semibold text-[#66ACAD] uppercase tracking-wider mb-2 block">Especialización</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#004647] mb-4">Tu éxito financiero comienza aquí</h2>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto mb-8">
             Soluciones financieras personalizadas para cada perfil y objetivo
           </p>
           
-          {/* Service navigation buttons */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8">
+          {/* Service navigation buttons - MEJORADOS CON DATA ATTRIBUTES */}
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12">
             {services.map((service, index) => (
               <Button
                 key={service.id}
+                data-service-id={service.id}
                 variant={activeServiceIndex === index ? "default" : "outline"}
                 className={`
                   ${activeServiceIndex === index 
-                    ? "bg-[#0a325a] text-white border-[#0a325a] hover:bg-[#0a325a]/90" 
-                    : "text-[#0a325a] border-[#0a325a]/20 hover:bg-[#0a325a]/10 hover:text-[#0a325a]"}
-                  transition-all duration-300
+                    ? "bg-[#004647] text-white border-[#004647] hover:bg-[#66ACAD] shadow-lg" 
+                    : "text-[#004647] border-[#004647]/30 hover:bg-[#004647]/10 hover:text-[#004647] hover:border-[#004647]"}
+                  transition-all duration-300 px-6 py-3 text-base font-semibold
                 `}
                 onClick={() => setActiveServiceIndex(index)}
               >
@@ -183,38 +185,40 @@ export function ServicesSection() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeService.id}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.5 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.6 }}
           >
             {/* Main card (large) */}
-            <Card className="overflow-hidden border-none shadow-lg mb-6">
-              <div className="relative h-[350px] md:h-[400px] w-full">
+            <Card className="overflow-hidden border-none shadow-2xl mb-8 bg-gradient-to-r from-[#004647] to-[#66ACAD]">
+              <div className="relative h-[400px] md:h-[450px] w-full">
                 <Image
                   src={activeService.image}
                   alt={activeService.title}
                   fill
-                  className="object-cover"
+                  className="object-cover opacity-30"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0a325a]/90 via-[#0a325a]/70 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#004647]/95 via-[#004647]/80 to-[#66ACAD]/80"></div>
                 
-                <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-12 z-10 w-full md:max-w-[60%]">
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">{activeService.title}</h3>
-                  <p className="text-lg md:text-xl text-white/90 font-light mb-3">{activeService.subtitle}</p>
-                  <p className="text-white/80 mb-6 text-sm md:text-base">{activeService.description}</p>
+                <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16 z-10 w-full md:max-w-[70%]">
+                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">{activeService.title}</h3>
+                  <p className="text-xl md:text-2xl text-white/90 font-light mb-4">{activeService.subtitle}</p>
+                  <p className="text-white/80 mb-8 text-base md:text-lg leading-relaxed">{activeService.description}</p>
                   
                   <motion.div 
                     whileHover={{ scale: 1.03 }} 
                     whileTap={{ scale: 0.98 }}
                   >
-                    <Button className="bg-[#aa8c64] hover:bg-[#aa8c64]/90 text-white px-6 py-2.5 text-sm md:text-base group relative overflow-hidden w-auto inline-flex">
+                    <Button 
+                      className="bg-white hover:bg-[#66ACAD] text-[#004647] hover:text-white px-8 py-4 text-base md:text-lg group relative overflow-hidden w-auto inline-flex font-bold border-2 border-white hover:border-[#66ACAD] transition-all duration-300"
+                      onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    >
                       <span className="relative z-10 flex items-center">
                         Solicitar información
-                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="ml-3 h-5 w-5 transition-transform group-hover:translate-x-1" />
                       </span>
-                      <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
                     </Button>
                   </motion.div>
                 </div>
@@ -222,49 +226,48 @@ export function ServicesSection() {
             </Card>
             
             {/* Two cards with irregular layout */}
-            <div className="grid grid-cols-12 gap-4 md:gap-6">
+            <div className="grid grid-cols-12 gap-6 md:gap-8">
               {activeService.cards.map((card, i) => (
                 <Card 
                   key={card.id}
                   className={`
-                    overflow-hidden border-none shadow-lg 
+                    overflow-hidden border-none shadow-xl 
                     ${card.wide 
                       ? 'col-span-12 md:col-span-7' 
                       : 'col-span-12 md:col-span-5'}
-                    group
+                    group hover:shadow-2xl transition-all duration-300
                   `}
                 >
-                  <div className="relative h-[250px] w-full">
+                  <div className="relative h-[280px] w-full">
                     <Image
                       src={card.image}
                       alt={card.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a325a]/95 via-[#0a325a]/70 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#004647]/95 via-[#004647]/70 to-transparent"></div>
                     
-                    <div className="absolute inset-0 flex flex-col justify-end p-6">
-                      <h4 className="text-xl font-semibold text-white mb-2">{card.title}</h4>
-                      <p className="text-white/90 text-sm mb-4">{card.description}</p>
+                    <div className="absolute inset-0 flex flex-col justify-end p-8">
+                      <h4 className="text-2xl font-semibold text-white mb-3">{card.title}</h4>
+                      <p className="text-white/90 text-base mb-6 leading-relaxed">{card.description}</p>
                       
                       {card.buttonText && (
-// Versión mejorada del botón en los cards inferiores
-<motion.div 
-  whileHover={{ scale: 1.03 }} 
-  whileTap={{ scale: 0.98 }}
-  className="mt-auto"
->
-  <Button 
-    size="sm"
-    className="bg-white/20 backdrop-blur-sm text-white border border-white/70 hover:bg-white hover:text-[#0a325a] transition-colors shadow-md"
-    asChild
-  >
-    <a href={card.buttonLink}>
-      {card.buttonText}
-      <ChevronRight className="ml-1 h-3 w-3" />
-    </a>
-  </Button>
-</motion.div>
+                        <motion.div 
+                          whileHover={{ scale: 1.03 }} 
+                          whileTap={{ scale: 0.98 }}
+                          className="mt-auto"
+                        >
+                          <Button 
+                            size="sm"
+                            className="bg-white/20 backdrop-blur-sm text-white border-2 border-white/70 hover:bg-white hover:text-[#004647] transition-all shadow-lg font-semibold"
+                            asChild
+                          >
+                            <a href={card.buttonLink}>
+                              {card.buttonText}
+                              <ChevronRight className="ml-2 h-4 w-4" />
+                            </a>
+                          </Button>
+                        </motion.div>
                       )}
                     </div>
                   </div>

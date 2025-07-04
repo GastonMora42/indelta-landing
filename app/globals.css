@@ -1,3 +1,4 @@
+/* app/globals.css - VERSIÓN ACTUALIZADA CON SOPORTE PARA HEADER PREMIUM */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -72,10 +73,306 @@
   }
   body {
     @apply bg-background text-foreground;
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevenir flash durante la carga */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-/* Bokeh effect for process section */
+/* Animaciones personalizadas mejoradas para el header */
+@keyframes bounce-x {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(102, 172, 173, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(102, 172, 173, 0.6);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-green {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Animaciones específicas para el header premium */
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes logoRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes headerGlow {
+  0%, 100% {
+    box-shadow: 0 4px 20px rgba(102, 172, 173, 0.2);
+  }
+  50% {
+    box-shadow: 0 8px 40px rgba(102, 172, 173, 0.4);
+  }
+}
+
+/* Clases de utilidad personalizadas */
+@layer utilities {
+  .animate-bounce-x {
+    animation: bounce-x 2s infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  .animate-pulse-green {
+    animation: pulse-green 2s ease-in-out infinite;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+  }
+
+  .animate-slide-out-right {
+    animation: slideOutRight 0.3s ease-in;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .animate-logo-rotate {
+    animation: logoRotate 2s ease-in-out;
+  }
+
+  .animate-header-glow {
+    animation: headerGlow 3s ease-in-out infinite;
+  }
+
+  /* Gradientes personalizados */
+  .bg-gradient-green {
+    background: linear-gradient(135deg, #004647 0%, #66ACAD 50%, #99C7C8 100%);
+  }
+
+  .bg-gradient-green-soft {
+    background: linear-gradient(135deg, rgba(0,70,71,0.1) 0%, rgba(102,172,173,0.1) 50%, rgba(153,199,200,0.1) 100%);
+  }
+
+  .bg-gradient-header {
+    background: linear-gradient(135deg, #004647 0%, rgba(0,70,71,0.95) 100%);
+  }
+
+  .text-gradient-green {
+    background: linear-gradient(135deg, #004647, #66ACAD);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Efectos de hover mejorados */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,70,71,0.15);
+  }
+
+  .hover-scale {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-glow {
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(102, 172, 173, 0.4);
+  }
+
+  /* Backdrop effects */
+  .backdrop-blur-header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .backdrop-blur-menu {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Scrollbar personalizado */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(102,172,173,0.1);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #66ACAD;
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #004647;
+  }
+
+  /* Efectos de texto */
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-md {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Efectos de borde */
+  .border-gradient-green {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white) padding-box,
+                linear-gradient(135deg, #004647, #66ACAD) border-box;
+  }
+
+  /* Animaciones de carga */
+  .loading-dots::after {
+    content: '';
+    animation: loadingDots 1.5s infinite;
+  }
+
+  @keyframes loadingDots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80%, 100% { content: '...'; }
+  }
+
+  /* Efectos para navegación activa */
+  .nav-link-active {
+    position: relative;
+  }
+
+  .nav-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #66ACAD, #99C7C8);
+    border-radius: 1px;
+  }
+
+  /* Responsive utilities mejoradas */
+  .responsive-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .responsive-margin {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+
+  .responsive-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  .responsive-heading {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+}
+
+/* Bokeh effect mejorado para sección de proceso */
 .bokeh-bg {
   position: absolute;
   width: 100%;
@@ -91,20 +388,22 @@
   height: 100%;
   left: 0;
   top: 0;
-  background-image: radial-gradient(circle at 20% 30%, rgba(10, 50, 90, 0.15) 0%, transparent 100px),
-    radial-gradient(circle at 80% 20%, rgba(10, 50, 90, 0.1) 0%, transparent 150px),
-    radial-gradient(circle at 40% 70%, rgba(10, 50, 90, 0.12) 0%, transparent 120px),
-    radial-gradient(circle at 70% 60%, rgba(10, 50, 90, 0.08) 0%, transparent 180px);
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 70, 71, 0.15) 0%, transparent 100px),
+    radial-gradient(circle at 80% 20%, rgba(102, 172, 173, 0.1) 0%, transparent 150px),
+    radial-gradient(circle at 40% 70%, rgba(153, 199, 200, 0.12) 0%, transparent 120px),
+    radial-gradient(circle at 70% 60%, rgba(0, 70, 71, 0.08) 0%, transparent 180px);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   opacity: 0.8;
 }
 
 .bokeh-bg::after {
-  background-image: radial-gradient(circle at 65% 25%, rgba(153, 199, 200, 0.1) 0%, transparent 100px),
+  background-image: 
+    radial-gradient(circle at 65% 25%, rgba(102, 172, 173, 0.1) 0%, transparent 100px),
     radial-gradient(circle at 25% 65%, rgba(153, 199, 200, 0.08) 0%, transparent 120px),
-    radial-gradient(circle at 85% 55%, rgba(153, 199, 200, 0.06) 0%, transparent 140px),
-    radial-gradient(circle at 45% 40%, rgba(153, 199, 200, 0.04) 0%, transparent 160px);
+    radial-gradient(circle at 85% 55%, rgba(0, 70, 71, 0.06) 0%, transparent 140px),
+    radial-gradient(circle at 45% 40%, rgba(102, 172, 173, 0.04) 0%, transparent 160px);
   animation: bokeh-move 30s infinite alternate ease-in-out;
 }
 
@@ -114,5 +413,150 @@
   }
   100% {
     transform: translateX(5px) translateY(5px);
+  }
+}
+
+/* Efectos de transición suave para secciones */
+.section-transition {
+  position: relative;
+}
+
+.section-transition::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(102,172,173,0.5), transparent);
+}
+
+/* Header específico styles */
+.header-blur {
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+}
+
+.mobile-menu-backdrop {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .animate-bounce-x,
+  .animate-float,
+  .animate-glow,
+  .animate-shimmer,
+  .animate-pulse-green,
+  .animate-slide-in-right,
+  .animate-slide-out-right,
+  .animate-fade-in-up,
+  .animate-logo-rotate,
+  .animate-header-glow {
+    animation: none;
+  }
+  
+  .bokeh-bg::after {
+    animation: none;
+  }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Efectos para elementos interactivos */
+.interactive-element {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+}
+
+.interactive-element:active {
+  transform: translateY(0);
+}
+
+/* Focus states mejorados */
+.focus-visible-enhanced:focus-visible {
+  outline: 2px solid #66ACAD;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Estilos para contraste mejorado en diferentes fondos */
+.bg-contrast-light {
+  background: linear-gradient(135deg, #f8f9fc 0%, rgba(102,172,173,0.05) 50%, #ffffff 100%);
+}
+
+.bg-contrast-medium {
+  background: linear-gradient(135deg, rgba(102,172,173,0.1) 0%, rgba(153,199,200,0.15) 50%, rgba(0,70,71,0.05) 100%);
+}
+
+.bg-contrast-dark {
+  background: linear-gradient(135deg, #004647 0%, #66ACAD 50%, #004647 100%);
+}
+
+/* Animación de entrada para elementos */
+@keyframes slideInFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideInFromBottom 0.6s ease-out;
+}
+
+/* Mejoras para el formulario de contacto */
+.form-input-focus {
+  transition: all 0.3s ease;
+}
+
+.form-input-focus:focus {
+  border-color: #66ACAD;
+  box-shadow: 0 0 0 3px rgba(102, 172, 173, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Efectos especiales para botones importantes */
+.cta-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  * {
+    color: black !important;
+    background: white !important;
   }
 }
