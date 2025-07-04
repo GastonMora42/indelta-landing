@@ -1,305 +1,204 @@
-// components/trusted-by-partners.tsx - VERSIÓN MEJORADA
+// components/trusted-by-partners.tsx
 "use client"
 
-import Image from "next/image"
 import { motion } from "framer-motion"
-import { Shield, ExternalLink, ArrowRight, CheckCircle2, Award } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import Image from "next/image"
+import { CheckCircle, Star, TrendingUp, Award } from "lucide-react"
 
 export function TrustedByPartnersPremium() {
-  // Información de las instituciones regulatorias
-  const regulatoryInstitutions = [
-    {
-      id: 1,
-      name: "BYMA",
-      logo: "/byma.webp",
-      description: "Operamos como agente registrado en el mercado de valores principal de Argentina",
-      link: "https://www.byma.com.ar",
-      type: "Mercado regulado",
-      icon: Award
-    },
-    {
-      id: 2,
-      name: "CNV",
-      logo: "/cnv.webp",
-      description: "Regulados por la Comisión Nacional de Valores bajo las más estrictas normativas",
-      link: "https://www.cnv.gov.ar",
-      type: "Entidad regulatoria",
-      icon: Shield
-    }
-  ]
-
   return (
-    <section id="trusted-by-partners" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#66ACAD]/5 to-white">
-      {/* Elementos decorativos de fondo */}
-      <div className="absolute left-0 top-0 w-full h-2 bg-gradient-to-r from-[#004647] via-[#66ACAD] to-[#004647]"></div>
-      <div className="absolute left-0 bottom-0 w-full h-2 bg-gradient-to-r from-[#004647]/30 via-[#66ACAD] to-[#004647]"></div>
-      
-      <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#66ACAD]/5 blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-[#004647]/5 blur-3xl"></div>
-      
+    <section id="trusted-by-partners" className="py-20 bg-gradient-to-br from-[#66ACAD]/10 via-[#004647]/5 to-white relative overflow-hidden">
+      {/* Elementos decorativos */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-[20%] left-[5%] w-72 h-72 rounded-full bg-[#66ACAD]/10 blur-3xl"></div>
+        <div className="absolute bottom-[10%] right-[15%] w-96 h-96 rounded-full bg-[#004647]/5 blur-3xl"></div>
+      </div>
+
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 bg-[#004647] text-white px-6 py-2 rounded-full text-sm font-medium mb-6"
+            className="inline-flex items-center gap-2 bg-[#00B04F]/10 px-6 py-2 rounded-full mb-6"
           >
-            <Shield size={16} className="text-[#66ACAD]" />
-            Respaldo institucional
+            <Star className="w-5 h-5 text-[#00B04F]" />
+            <span className="text-sm font-semibold text-[#004647] uppercase tracking-wider">
+              Partner estratégico
+            </span>
           </motion.div>
-          
+
           <motion.h2 
+            className="text-4xl md:text-5xl font-bold text-[#004647] mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6"
           >
-            {/* TÍTULO CON VERDE CHILLÓN */}
-            Respaldados por las principales <br className="hidden md:block" />
-            <span className="text-[#00FF7F] drop-shadow-lg">instituciones financieras</span>
+            Respaldados por Balanz
           </motion.h2>
-          
+
           <motion.p 
+            className="text-xl text-slate-600 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-gray-600 max-w-3xl mx-auto text-xl leading-relaxed"
           >
-            Tu tranquilidad es nuestra prioridad. Trabajamos con socios estratégicos de primer nivel
-            y operamos bajo el marco regulatorio más estricto del mercado de valores argentino.
+            Como socios estratégicos de <span className="text-[#004647] font-semibold">Balanz</span>, 
+            ofrecemos acceso exclusivo a los mejores instrumentos financieros del mercado
           </motion.p>
         </div>
-        
-        {/* Balanz como partner estratégico destacado - MEJORADO */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-[#66ACAD]/20">
-            <div className="flex flex-col lg:flex-row items-center">
-              {/* Imagen de Balanz a la izquierda - MÁS GRANDE */}
-              <div className="lg:w-1/2 p-8 lg:p-16 flex justify-center lg:justify-end relative">
-                {/* Base que visualmente integra el teléfono con la card */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-[280px] h-3 bg-[#004647]/10 rounded-t-full blur-sm"></div>
-                
-                {/* Animación mejorada del teléfono - TAMAÑO AUMENTADO MÁS */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.4, y: 150 }}
-                  whileInView={{ 
-                    opacity: 1, 
-                    scale: 1, 
-                    y: 0,
-                  }}
-                  transition={{ 
-                    type: "spring",
-                    stiffness: 80,
-                    damping: 15,
-                    delay: 0.3,
-                    duration: 1
-                  }}
-                  viewport={{ once: true }}
-                  className="relative w-[420px] h-[560px]" // AUMENTADO AÚN MÁS
-                >
-                  <Image
-                    src="/balanz-open.webp"
-                    alt="Aplicación de Balanz"
-                    width={840} // Cuadruplicado para mejor calidad
-                    height={1120} // Cuadruplicado para mejor calidad
-                    className="object-contain drop-shadow-2xl"
-                  />
-                  
-                  {/* Reflejo sutil debajo del teléfono para integrarlo mejor */}
-                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-[220px] h-12 bg-[#004647]/5 filter blur-md rounded-[50%]"></div>
-                </motion.div>
-              </div>
-              
-              {/* Contenido a la derecha - PADDING MEJORADO */}
-              <div className="lg:w-1/2 p-10 lg:p-16 flex flex-col justify-center">
-                <div className="inline-flex items-center gap-2 bg-[#004647]/10 text-[#004647] px-4 py-2 rounded-full text-sm font-semibold mb-8">
-                  <CheckCircle2 size={16} className="text-[#66ACAD]" />
-                  Partner estratégico principal
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+          {/* Información de la alianza */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-white rounded-2xl p-8 shadow-xl border border-[#66ACAD]/20">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-[#00B04F]/10 rounded-2xl flex items-center justify-center">
+                  <Award className="w-8 h-8 text-[#00B04F]" />
                 </div>
-                
-                {/* LOGO DE BALANZ MÁS GRANDE Y CENTRADO */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="mb-8 flex justify-center lg:justify-start"
-                >
-                  <Image
-                    src="/balanz.webp"
-                    alt="Logo de Balanz"
-                    width={320}    // AUMENTADO SIGNIFICATIVAMENTE
-                    height={120}   // AUMENTADO SIGNIFICATIVAMENTE
-                    className="h-20 w-auto object-contain" // AUMENTADO DE h-16 A h-20
-                  />
-                </motion.div>
-                
-                <motion.h3 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  viewport={{ once: true }}
-                  className="text-3xl md:text-4xl font-bold text-[#004647] mb-6"
-                >
-                  {/* GRATIS EN VERDE */}
-                  Abrí tu cuenta <span className="text-[#00B04F]">GRATIS</span> en Balanz y operá con nosotros
-                </motion.h3>
-                
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-slate-600 mb-8 text-lg leading-relaxed"
-                >
-                  Somos partners estratégicos de Balanz, una de las plataformas líderes en Argentina para inversores. 
-                  A través de nuestra alianza, puedes abrir una cuenta en Balanz y acceder a nuestros servicios de 
-                  asesoramiento financiero personalizado, mientras operas en un entorno seguro y regulado.
-                </motion.p>
-                
-                <motion.ul 
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                  viewport={{ once: true }}
-                  className="space-y-4 mb-10"
-                >
-                  {[
-                    "Acceso a mercados nacionales e internacionales",
-                    "Operaciones integradas y transparentes",
-                    "Plataforma tecnológica de última generación",
-                    "Respaldo institucional de primer nivel"
-                  ].map((benefit, index) => (
-                    <motion.li 
-                      key={index} 
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0.7 + (index * 0.1) }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-3"
-                    >
-                      <CheckCircle2 size={20} className="text-[#66ACAD] mt-0.5 flex-shrink-0" />
-                      <span className="text-slate-700 text-lg">{benefit}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-                
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.1 }}
-                  viewport={{ once: true }}
-                  className="flex flex-col sm:flex-row gap-4"
-                >
-                  <Button 
-                    className="bg-[#004647] hover:bg-[#66ACAD] text-white flex items-center gap-2 px-8 py-4 text-lg font-semibold"
-                    onClick={() => window.open('https://www.balanz.com/abrir-cuenta', '_blank')}
+                <div>
+                  <h3 className="text-2xl font-bold text-[#004647]">Alianza Estratégica</h3>
+                  <p className="text-[#66ACAD] font-medium">Partner Oficial Balanz</p>
+                </div>
+              </div>
+
+              <div className="space-y-4 mb-8">
+                {[
+                  "Acceso a productos financieros exclusivos",
+                  "Plataforma tecnológica de vanguardia",
+                  "Respaldo de una entidad regulada",
+                  "Liquidez y seguridad garantizada"
+                ].map((benefit, index) => (
+                  <motion.div
+                    key={index}
+                    className="flex items-center gap-3"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 * index }}
+                    viewport={{ once: true }}
                   >
-                    Abrir cuenta en Balanz
-                    <ArrowRight size={18} />
-                  </Button>
-                  
-                  <Button 
-                    variant="outline" 
-                    className="border-[#66ACAD] text-[#66ACAD] hover:bg-[#66ACAD]/10 px-8 py-4 text-lg"
-                    onClick={() => window.open('https://www.balanz.com', '_blank')}
-                  >
-                    Conocer más
-                    <ExternalLink size={18} className="ml-2" />
-                  </Button>
-                </motion.div>
+                    <CheckCircle className="w-5 h-5 text-[#00B04F]" />
+                    <span className="text-slate-700">{benefit}</span>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="bg-gradient-to-r from-[#004647]/10 to-[#66ACAD]/10 rounded-xl p-6">
+                <div className="flex items-center gap-3 mb-3">
+                  <TrendingUp className="w-6 h-6 text-[#004647]" />
+                  <span className="font-semibold text-[#004647]">Beneficios exclusivos</span>
+                </div>
+                <p className="text-sm text-slate-600">
+                  Como clientes de Indelta, tienes acceso preferencial a las mejores condiciones 
+                  y productos de Balanz, una de las fintech más importantes de Latinoamérica.
+                </p>
               </div>
             </div>
-          </div>
-        </motion.div>
-        
-        {/* Instituciones regulatorias - LOGOS MÁS GRANDES */}
-        <div className="mb-12">
-          <motion.h3
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+          </motion.div>
+
+          {/* Logo y información de Balanz */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-2xl text-center font-semibold text-[#004647] mb-12"
+            className="text-center"
           >
-            Operamos bajo el marco regulatorio de
-          </motion.h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-            {regulatoryInstitutions.map((institution, index) => (
+            <div className="bg-white rounded-2xl p-12 shadow-xl border border-[#66ACAD]/20">
+              {/* Logo de Balanz */}
               <motion.div
-                key={institution.id}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15,
-                  delay: 0.2 * index
-                }}
+                className="mb-8"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-32 h-32 mx-auto bg-gradient-to-br from-[#004647] to-[#66ACAD] rounded-3xl flex items-center justify-center mb-6">
+                  <span className="text-4xl font-bold text-white">B</span>
+                </div>
+                <h4 className="text-3xl font-bold text-[#004647] mb-2">Balanz</h4>
+                <p className="text-[#66ACAD] font-medium">Fintech líder en Latinoamérica</p>
+              </motion.div>
+
+              <div className="space-y-6">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-[#004647] mb-1">+$500M</div>
+                    <div className="text-sm text-slate-600">Activos bajo gestión</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-bold text-[#004647] mb-1">15+</div>
+                    <div className="text-sm text-slate-600">Años de experiencia</div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-center gap-2 text-[#00B04F]">
+                  <div className="w-3 h-3 rounded-full bg-[#00B04F] animate-pulse"></div>
+                  <span className="font-semibold">Partner Verificado</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Sección de ventajas */}
+        <motion.div
+          className="mt-20 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="text-3xl font-bold text-[#004647] mb-12">
+            Lo mejor de ambos mundos
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {[
+              {
+                title: "Experiencia Indelta",
+                description: "25+ años de trayectoria en asesoramiento financiero personalizado",
+                color: "#004647"
+              },
+              {
+                title: "Tecnología Balanz",
+                description: "Plataforma digital de última generación para gestión de inversiones",
+                color: "#66ACAD"
+              },
+              {
+                title: "Resultados únicos",
+                description: "La combinación perfecta entre experiencia tradicional e innovación",
+                color: "#00B04F"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-xl p-6 shadow-lg border border-[#66ACAD]/20"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 * index }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-[#66ACAD]/20"
               >
-                {/* Tipo de institución */}
-                <div className="bg-[#004647] text-white px-6 py-2 text-sm font-bold tracking-wider uppercase">
-                  {institution.type}
+                <div 
+                  className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4"
+                  style={{ backgroundColor: `${item.color}20` }}
+                >
+                  <div 
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: item.color }}
+                  />
                 </div>
-                
-                {/* Contenido principal con LOGO MÁS GRANDE */}
-                <div className="p-8">
-                  <div className="h-40 flex items-center justify-center mb-6">
-                    <Image
-                      src={institution.logo}
-                      alt={`Logo de ${institution.name}`}
-                      width={320}  // AUMENTADO DE 240
-                      height={160} // AUMENTADO DE 120
-                      className="object-contain max-h-32" // AUMENTADO DE max-h-24
-                    />
-                  </div>
-                  
-                  <p className="text-gray-600 text-center mb-8 text-base leading-relaxed">
-                    {institution.description}
-                  </p>
-                  
-                  <a 
-                    href={institution.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 text-[#66ACAD] hover:text-[#004647] transition-colors text-base font-medium"
-                  >
-                    Visitar sitio oficial
-                    <ExternalLink size={16} />
-                  </a>
-                </div>
+                <h4 className="text-xl font-bold text-[#004647] mb-3">{item.title}</h4>
+                <p className="text-slate-600">{item.description}</p>
               </motion.div>
             ))}
-          </div>
-        </div>
-        
-        {/* Certificación adicional */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          viewport={{ once: true }}
-          className="mt-20 text-center"
-        >
-          <div className="inline-flex items-center gap-4 bg-[#66ACAD]/10 px-8 py-4 rounded-full border border-[#66ACAD]/20">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
-              <Shield size={24} className="text-[#004647]" />
-            </div>
           </div>
         </motion.div>
       </div>

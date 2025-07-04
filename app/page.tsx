@@ -1,4 +1,4 @@
-// app/page.tsx - VERSIÓN COMPLETAMENTE MEJORADA
+// app/page.tsx - VERSIÓN MEJORADA CON COMPONENTES REACTBITS
 import Link from "next/link"
 import Image from "next/image"
 import { ChevronRight, BarChart2, Shield, Users, TrendingUp } from "lucide-react"
@@ -6,19 +6,19 @@ import { ChevronRight, BarChart2, Shield, Users, TrendingUp } from "lucide-react
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ContactForm } from "@/components/contact-form"
-import { ProcessSteps } from "@/components/process-steps"
 import { CompanyLogos } from "@/components/company-logos"
 import { TestimonialCta } from "@/components/testimonial-cta"
-import { HeroBanner } from "@/components/hero-carousel"
 import { Header } from "@/components/header"
-import { motion } from "framer-motion"
 import { ServicesSection } from "@/components/services-section"
-import { WhyChooseUsSection } from "@/components/why-choose-us-section"
 import { EnhancedTestimonials } from "@/components/enhanced-testimonials"
 import { TrustedBrandsCarousel } from "@/components/trusted-brands-carousel"
 import { ImpactStatistics } from "@/components/impact-statictics"
 import { TrustedByPartnersPremium } from "@/components/trusted-by-partners"
-import { ProcessSection } from "@/components/process-section"
+
+// Importar los nuevos componentes mejorados
+import { CircularGalleryHeader } from "@/components/circular-gallery-header"
+import { EnhancedWhyChooseUs } from "@/components/enhanced-why-chose-us"
+import { SpotlightProcessSection } from "@/components/spotligth-process-section"
 
 export default function Home() {
   return (
@@ -26,16 +26,8 @@ export default function Home() {
       <Header activePage="home" />
 
       <main className="flex-1">
-        {/* Hero Section con contraste de fondo mejorado */}
-        <section className="relative py-4 md:py-6 bg-gradient-to-b from-gray-50 via-[#66ACAD]/5 to-white">
-          <div className="container relative z-10">
-            <div className="grid grid-cols-1 gap-4">
-              <HeroBanner />
-            </div>
-          </div>
-          {/* Línea de transición suave */}
-          <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-b from-transparent to-white"></div>
-        </section>
+        {/* Hero Section MEJORADO con Circular Gallery */}
+        <CircularGalleryHeader />
 
         {/* Services Section con fondo contrastante */}
         <section className="relative bg-gradient-to-b from-white via-[#004647]/5 to-[#66ACAD]/10">
@@ -44,19 +36,11 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-b from-transparent to-[#99C7C8]/10"></div>
         </section>
 
-        {/* Why Choose Us Section con fondo verde suave */}
-        <section className="relative bg-gradient-to-b from-[#66ACAD]/10 via-[#99C7C8]/15 to-[#004647]/5">
-          <WhyChooseUsSection />
-          {/* Transición hacia el proceso */}
-          <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-b from-transparent to-white"></div>
-        </section>
+        {/* Why Choose Us Section MEJORADO */}
+        <EnhancedWhyChooseUs />
 
-        {/* Process Section con fondo blanco y toques verdes */}
-        <section className="relative bg-gradient-to-b from-white via-[#66ACAD]/5 to-white">
-          <ProcessSection />
-          {/* Línea decorativa de transición */}
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#004647] via-[#66ACAD] to-[#004647]"></div>
-        </section>
+        {/* Process Section MEJORADO con Spotlight Cards */}
+        <SpotlightProcessSection />
 
         {/* Trusted Brands con fondo neutro */}
         <section className="relative bg-gradient-to-b from-gray-50 to-white">

@@ -127,7 +127,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
                   className="relative"
                 >
                   <Image 
-                    src="/logo.png" 
+                    src="/logo.webp" 
                     alt="Indelta" 
                     width={56} 
                     height={56} 
