@@ -11,16 +11,16 @@ export function TrustedBrandsCarousel() {
   
   // Lista de marcas (reemplaza con tus marcas reales)
   const brands = [
-    { id: 1, name: "Microsoft", logo: "/logos/microsoft.svg" },
-    { id: 2, name: "Google", logo: "/logos/google.svg" },
-    { id: 3, name: "Amazon", logo: "/logos/amazon.svg" },
-    { id: 4, name: "Apple", logo: "/logos/apple.svg" },
-    { id: 5, name: "IBM", logo: "/logos/ibm.svg" },
-    { id: 6, name: "Oracle", logo: "/logos/oracle.svg" },
-    { id: 7, name: "Tesla", logo: "/logos/tesla.svg" },
-    { id: 8, name: "Meta", logo: "/logos/meta.svg" },
-    { id: 9, name: "Salesforce", logo: "/logos/salesforce.svg" },
-    { id: 10, name: "Adobe", logo: "/logos/adobe.svg" },
+    { id: 1, name: "Microsoft", logo: "/ib.webp" },
+    { id: 2, name: "Google", logo: "/pfizer.webp" },
+    { id: 3, name: "Amazon", logo: "/nike.webp" },
+    { id: 4, name: "Apple", logo: "/inviu.webp" },
+    { id: 5, name: "IBM", logo: "/cadab.webp" },
+    { id: 6, name: "Oracle", logo: "/jpmorgan.webp" },
+    { id: 7, name: "Tesla", logo: "/bny.webp" },
+    { id: 8, name: "Meta", logo: "/ZURICH.webp" },
+    { id: 9, name: "Salesforce", logo: "/usa.webp" },
+    { id: 10, name: "Adobe", logo: "/balanz.webp" },
   ]
 
   // Calcula la anchura para la animación

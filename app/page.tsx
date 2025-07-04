@@ -177,7 +177,7 @@ export default function Home() {
                   <div className="w-8 h-8 bg-[#66ACAD] rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-xs font-bold">✓</span>
                   </div>
-                  <span className="text-[#99C7C8]">Agente de Liquidación y Compensación</span>
+                  <span className="text-[#99C7C8]">Agente productor bursátil 771 CNV</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#66ACAD] rounded-full flex items-center justify-center flex-shrink-0">
@@ -189,7 +189,7 @@ export default function Home() {
                   <div className="w-8 h-8 bg-[#66ACAD] rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-white text-xs font-bold">✓</span>
                   </div>
-                  <span className="text-[#99C7C8]">Miembro de la Bolsa de Valores</span>
+                  <span className="text-[#99C7C8]">Miembros del concejo profesional de ciencias economicas</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#66ACAD] rounded-full flex items-center justify-center flex-shrink-0">
@@ -209,8 +209,8 @@ export default function Home() {
                   </div>
                   <div>
                     <p className="font-medium text-white">Oficina Principal</p>
-                    <p>Av. Financiera 123, Piso 4</p>
-                    <p>Buenos Aires, Argentina</p>
+                    <p>Av. de los Lagos 7008 piso 1º</p>
+                    <p>B1670 Tigre, Provincia de Buenos Aires, Argentina</p>
                   </div>
                 </div>
                 
