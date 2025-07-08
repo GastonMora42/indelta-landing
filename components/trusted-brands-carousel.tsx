@@ -14,7 +14,7 @@ export function TrustedBrandsCarousel() {
     { id: 1, name: "Microsoft", logo: "/ib.webp" },
     { id: 2, name: "Google", logo: "/pfizer.webp" },
     { id: 3, name: "Amazon", logo: "/nike.webp" },
-    { id: 4, name: "Apple", logo: "/inviu.webp" },
+    { id: 4, name: "Apple", logo: "/Inviu.webp" },
     { id: 5, name: "IBM", logo: "/cadab.webp" },
     { id: 6, name: "Oracle", logo: "/jpmorgan.webp" },
     { id: 7, name: "Tesla", logo: "/bny.webp" },

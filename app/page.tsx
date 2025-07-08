@@ -119,11 +119,9 @@ export default function Home() {
               <div className="mt-6 space-y-2">
                 <div className="flex items-center gap-2 text-[#99C7C8]">
                   <div className="w-2 h-2 rounded-full bg-[#66ACAD]"></div>
-                  <span className="text-sm">info@indelta.com</span>
+                  <span className="text-sm">consultas@indelta.com.ar</span>
                 </div>
                 <div className="flex items-center gap-2 text-[#99C7C8]">
-                  <div className="w-2 h-2 rounded-full bg-[#66ACAD]"></div>
-                  <span className="text-sm">+54 11 5555-5555</span>
                 </div>
               </div>
             </div>
@@ -253,11 +251,7 @@ export default function Home() {
       <div className="fixed bottom-6 right-6 z-50">
         <div className="relative group">
           <a
-            href="https://wa.me/5491155555555"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white px-5 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-2px]"
-            aria-label="Contactar por WhatsApp"
+           
           >
             <div className="relative">
               {/* Efecto de ping animado */}
