@@ -35,7 +35,7 @@ export function Header({ activePage = "home" }: HeaderProps) {
   ]
 
   const contactInfo = [
-    { icon: Mail, text: "info@indelta.com", href: "mailto:consultas@indelta.com.ar" },
+    { icon: Mail, text: "consultas@indelta.com.ar", href: "mailto:consultas@indelta.com.ar" },
     { icon: Clock, text: "Lun - Vie: 9:00 - 18:00", href: null }
   ]
 
